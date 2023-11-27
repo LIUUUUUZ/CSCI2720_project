@@ -1,13 +1,15 @@
 import './App.css';
 import React from 'react';
 import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Link,
-    useLocation,
-  } from 'react-router-dom';
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from 'react-router-dom';
+import LocationPage from './components/LocationPage';
 
+const SERVER_URL = 'localhost:5000'
 const colorSet = {
   CUHKPurple: "#740f6B",
   CUHKYellow: "#E6B001"
@@ -35,6 +37,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/location-page/:id" element={<LocationPage/>} />
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
@@ -65,20 +68,19 @@ class LocationList extends React.Component {
 
   componentDidMount() {
     // Get info
-    const url = 'localhost:5000'
-    fetch(`http://${url}/location-list`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          originalLocationList: data,
-          shownLocationList: data,
-          isFetching: false
-        });
-      })
-      .catch(error => {
-        console.log('Error fetching location list:', error);
-        this.setState({ isFetching: false });
+    fetch(`http://${SERVER_URL}/location-list`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({
+        originalLocationList: data,
+        shownLocationList: data,
+        isFetching: false
       });
+    })
+    .catch(error => {
+      console.log('Error fetching location list:', error);
+      this.setState({ isFetching: false });
+    });
   }
 
   // For User task 1, sort the list
@@ -107,7 +109,7 @@ class LocationList extends React.Component {
     }
   }
 
-  // For user task 3, search locations
+  // For User task 3, search locations
   handleSearchChange = (e) => {
     this.setState({ searchText: e.target.value });
   }
@@ -149,8 +151,8 @@ class LocationList extends React.Component {
 
           {shownLocationList.map(location => (
             <ul key={location.ID} className="list-group list-group-horizontal-lg margin-bot">
-              <button type="button" className="list-group-item list-group-item-action flex-fill">{location.info.locationName}</button>
-              <button type="button" className="list-group-item list-group-item-action flex-fill">{location.info.eventNum}</button>
+              <Link to={`/location-page/${location.ID}`} className="list-group-item list-group-item-action flex-fill">{location.info.locationName}</Link>
+              <Link to={`/location-page/${location.ID}`} className="list-group-item list-group-item-action flex-fill">{location.info.eventNum}</Link>
             </ul>
           ))}
         </div>
@@ -162,13 +164,6 @@ class LocationList extends React.Component {
 // 'My favorites' page
 const Favorites = () => {
   return <h1>This is a Favorites page.</h1>
-}
-
-// Location information page
-class LocationPage extends React.Component {
-  render() {
-    return <h1>This is a location page.</h1>
-  }
 }
 
 // No matched link
