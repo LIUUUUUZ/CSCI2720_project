@@ -55,7 +55,8 @@ class LocationList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      locations: [],
+      originalLocationList: [],
+      shownLocationList: [],
       isFetching: true,
       sortingStatus: false,
       searchText: "",
@@ -68,7 +69,11 @@ class LocationList extends React.Component {
     fetch(`http://${url}/location-list`)
       .then(response => response.json())
       .then(data => {
-        this.setState({ locations: data, isFetching: false });
+        this.setState({
+          originalLocationList: data,
+          shownLocationList: data,
+          isFetching: false
+        });
       })
       .catch(error => {
         console.log('Error fetching location list:', error);
@@ -78,11 +83,11 @@ class LocationList extends React.Component {
 
   // For User task 1, sort the list
   sortList = () => {
-    let list = this.state.locations
+    let list = this.state.shownLocationList
     if (this.state.sortingStatus) {
       list.reverse()
       this.setState({
-        locations: list
+        shownLocationList: list
       })
     } else {
       let len = list.length;
@@ -96,7 +101,7 @@ class LocationList extends React.Component {
         }
       }
       this.setState({
-        locations: list,
+        shownLocationList: list,
         sortingStatus: true
       })
     }
@@ -110,14 +115,14 @@ class LocationList extends React.Component {
   searchLocations = (e) => {
     e.preventDefault()
     let text = this.state.searchText
-    let list = this.state.locations
+    let list = this.state.originalLocationList
     list = list.filter((location) => location.info.locationName.toLowerCase().includes(text.toLowerCase()))
     console.log(list)
-    this.setState({locations: list})
+    this.setState({shownLocationList: list})
   }
 
   render() {
-    const { locations, isFetching } = this.state;
+    const { shownLocationList, isFetching } = this.state;
 
     if (isFetching) {
       return <div>Getting data...</div>;
@@ -142,7 +147,7 @@ class LocationList extends React.Component {
             </button>
           </ul>
 
-          {locations.map(location => (
+          {shownLocationList.map(location => (
             <ul key={location.ID} className="list-group list-group-horizontal-lg margin-bot">
               <button type="button" className="list-group-item list-group-item-action flex-fill">{location.info.locationName}</button>
               <button type="button" className="list-group-item list-group-item-action flex-fill">{location.info.eventNum}</button>
