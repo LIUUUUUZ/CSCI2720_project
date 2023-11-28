@@ -18,22 +18,23 @@ const colorSet = {
 function App() {
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-expand-lg" data-bs-theme="dark" style={{backgroundColor: colorSet.CUHKPurple, marginBottom: "3vh"}}>
-        <div className="container-fluid">
-          <div className="col-6">
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link className="navbar-brand" to="/">Home</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="navbar-brand" to="/favorites">Favorites</Link>
-                </li>
-              </ul>
-            </div>
+      <nav>
+        <div className='width-50 flex' style={{height: '100%'}}>
+          <div className='nav-cell'>
+            <Link to="/">Home</Link>
+          </div>
+          <div className='nav-cell'>
+            <Link to="/favorites">Favorites</Link>
           </div>
         </div>
+        <div className='width-50 flex' style={{height: '100%'}}>
+          222
+        </div>
       </nav>
+      <div id='a-cunning-margin' className='a-cunning-margin'>
+        <div style={{width: '100vw'}}></div>
+      </div>
+
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
