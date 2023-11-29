@@ -22,6 +22,10 @@ class LocationPage extends React.Component {
     }
   }
 
+  noMatchedLocationID = () => {
+    window.location.href = "/"
+  };
+
   componentDidMount() {
     let { id } = this.props.params;
     // Get info
@@ -36,6 +40,7 @@ class LocationPage extends React.Component {
     .catch(error => {
       console.log('Error fetching location list:', error);
       this.setState({ isFetching: false });
+      this.noMatchedLocationID();
     });
   }
 

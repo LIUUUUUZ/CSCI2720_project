@@ -8,6 +8,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import LocationPage from './components/LocationPage';
+import LoginComponent from './components/LoginComponent';
 
 const SERVER_URL = 'localhost:5000'
 const colorSet = {
@@ -20,15 +21,17 @@ function App() {
     <BrowserRouter>
       <nav>
         <div className='width-50 flex' style={{height: '100%'}}>
-          <div className='nav-cell'>
+          <div className='nav-cell left'>
             <Link to="/">Home</Link>
           </div>
-          <div className='nav-cell'>
+          <div className='nav-cell left'>
             <Link to="/favorites">Favorites</Link>
           </div>
         </div>
-        <div className='width-50 flex' style={{height: '100%'}}>
-          222
+        <div className='width-50 flex' style={{height: '100%', flexDirection: 'row-reverse'}}>
+        <div className='nav-cell right'>
+            <Link to="/login">Login</Link>
+          </div>
         </div>
       </nav>
       <div id='a-cunning-margin' className='a-cunning-margin'>
@@ -39,6 +42,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/location-page/:id" element={<LocationPage/>} />
+          <Route path="/login" element={<LoginComponent />} />
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>

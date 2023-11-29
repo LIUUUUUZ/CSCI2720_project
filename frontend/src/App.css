@@ -35,8 +35,12 @@ nav a {
   background-color: #44093e;
 }
 
-.nav-cell:nth-child(1) {
-  margin-left: 1vw;
+.nav-cell.left:nth-child(1) {
+  margin-left: 2vw;
+}
+
+.nav-cell.right:nth-child(1) {
+  margin-right: 2vw;
 }
 
 /* Tool classes */
