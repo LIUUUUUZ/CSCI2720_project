@@ -1,6 +1,6 @@
 import './App.css';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -19,25 +19,27 @@ const colorSet = {
 
 function App() {
   const [user, setUser] = useState({});
+  const [isUserNameHovered, setIsUserNameHovered] = useState(false);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setUser(user);
+    }
+  }, [])
+
+  function onMouseEnterUserName() {
+    setIsUserNameHovered(true);
+  }
+
+  function onMouseLeaveUserName() {
+    setIsUserNameHovered(false);
+  }
 
   function setUserAfterLogin (user) {
     setUser(user)
-  }
-
-  async function componentDidMount() {
-    // Get info
-    try {
-      const response = await axios.get(`http://${SERVER_URL}/location-list`);
-      const data = response.data;
-      this.setState({
-        originalLocationList: data,
-        shownLocationList: data,
-        isFetching: false
-      });
-    } catch (error) {
-      console.log('Error fetching location list:', error);
-      this.setState({ isFetching: false });
-    }
+    localStorage.setItem('user', JSON.stringify(user))
   }
 
   return (
@@ -47,14 +49,17 @@ function App() {
           <div className='nav-cell left'>
             <Link to="/">Home</Link>
           </div>
-          <div className='nav-cell left'>
-            <Link to="/favorites">Favorites</Link>
-          </div>
         </div>
         <div className='width-50 flex' style={{height: '100%', flexDirection: 'row-reverse'}}>
-          <div className='nav-cell right'>
-            { user && user.userName /*&& user.idToken*/? <Link to='/profile'>{user.userName}</Link> : <Link to="/login">Login</Link>}
+          <div className='nav-cell right' onMouseEnter={onMouseEnterUserName} onMouseLeave={onMouseLeaveUserName}>
+            { user && user.userName /*&& user.idToken*/ ?
+            <div className='user-name'>{user.userName.length > 10 ? user.userName.substring(0, 8) + '...' : user.userName}</div> :
+            <Link to='/login' className='user-name'>Login</Link>}
           </div>
+          <div className='dropdown' style={{display: isUserNameHovered ? 'flex' : 'none'}} onMouseEnter={onMouseEnterUserName} onMouseLeave={onMouseLeaveUserName}>
+              <div className='dropdown-cell'>1</div>
+              <div className='dropdown-cell'>2</div>
+            </div>
         </div>
       </nav>
       <div id='a-cunning-margin' className='a-cunning-margin'>
@@ -64,7 +69,7 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/location-page/:id" element={<LocationPage/>} />
+          <Route path="/location-page/:id" element={<LocationPage />} />
           <Route path="/login" element={<LoginComponent onLogin={setUserAfterLogin} />} />
           <Route path="*" element={<NoMatch />} />
       </Routes>

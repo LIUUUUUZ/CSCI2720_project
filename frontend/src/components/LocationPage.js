@@ -1,7 +1,7 @@
 // 记得添加访问的id对应的页面不存在时的处理措施
 import '../App.css';
-import React, {useEffect} from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const SERVER_URL = 'localhost:5000'
 const colorSet = {
@@ -9,60 +9,49 @@ const colorSet = {
   CUHKYellow: "#E6B001"
 }
 
-function withParams(Component) {
-  return props => <Component {...props} params={useParams()} />;
-}
+function LocationPage()  {
+  const [location, setLocation] = useState({})
+  const [isFetching, setIsFetching] = useState(true)
 
-class LocationPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      location: {},
-      isFetching: true,
-    }
-  }
+  const { id } = useParams();
+  const navigate = useNavigate()
 
-  noMatchedLocationID = () => {
-    window.location.href = "/"
+  function noMatchedLocationID() {
+    /* To be finished*/
+    navigate("/")
   };
 
-  componentDidMount() {
-    let { id } = this.props.params;
+  useEffect(() => {
     // Get info
     fetch(`http://${SERVER_URL}/location-page/${id}`)
     .then(response => response.json())
     .then(data => {
-      this.setState({
-        location: data,
-        isFetching: false
-      });
+      setLocation(data)
+      setIsFetching(false)  
     })
     .catch(error => {
       console.log('Error fetching location list:', error);
-      this.setState({ isFetching: false });
-      this.noMatchedLocationID();
+      setIsFetching(false);
+      noMatchedLocationID();
     });
-  }
+  }, [id]);
 
-  render() {
-    const { location, isFetching } = this.state
-    if (isFetching) {
-      return <div>Loading...</div>
-    } else {
-      return (
-        <div className='main-container'>
-          <div id='hider' className='hider'>
-            <div style={{width: '98vw', height: '20vh'}}></div>
-          </div>
-          <div>
-            <MapContainer />
-          </div>
-          <div id='location-info-container' className='location-info-container'>
-            121312131gidsiufisgfdisgfidsuagufosfguyasguadsyvjyadstyfadsgvjydasvjasdfyvadsjyfvadsjyvfdsayjgv
-          </div>
+  if (isFetching) {
+    return <div>Loading...</div>
+  } else {
+    return (
+      <div className='main-container'>
+        <div id='hider' className='hider'>
+          <div style={{width: '98vw', height: '20vh'}}></div>
         </div>
-      )
-    }
+        <div>
+          <MapContainer />
+        </div>
+        <div id='location-info-container' className='location-info-container'>
+          121312131gidsiufisgfdisgfidsuagufosfguyasguadsyvjyadstyfadsgvjydasvjasdfyvadsjyfvadsjyvfdsayjgv
+        </div>
+      </div>
+    )
   }
 }
 
@@ -112,4 +101,4 @@ const MapContainer = () => {
   );
 };
 
-export default withParams(LocationPage);
+export default LocationPage;
