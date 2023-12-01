@@ -1,5 +1,6 @@
 import './App.css';
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -17,6 +18,28 @@ const colorSet = {
 }
 
 function App() {
+  const [user, setUser] = useState({});
+
+  function setUserAfterLogin (user) {
+    setUser(user)
+  }
+
+  async function componentDidMount() {
+    // Get info
+    try {
+      const response = await axios.get(`http://${SERVER_URL}/location-list`);
+      const data = response.data;
+      this.setState({
+        originalLocationList: data,
+        shownLocationList: data,
+        isFetching: false
+      });
+    } catch (error) {
+      console.log('Error fetching location list:', error);
+      this.setState({ isFetching: false });
+    }
+  }
+
   return (
     <BrowserRouter>
       <nav>
@@ -29,8 +52,8 @@ function App() {
           </div>
         </div>
         <div className='width-50 flex' style={{height: '100%', flexDirection: 'row-reverse'}}>
-        <div className='nav-cell right'>
-            <Link to="/login">Login</Link>
+          <div className='nav-cell right'>
+            { user && user.userName /*&& user.idToken*/? <Link to='/profile'>{user.userName}</Link> : <Link to="/login">Login</Link>}
           </div>
         </div>
       </nav>
@@ -42,7 +65,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/location-page/:id" element={<LocationPage/>} />
-          <Route path="/login" element={<LoginComponent />} />
+          <Route path="/login" element={<LoginComponent onLogin={setUserAfterLogin} />} />
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
@@ -71,21 +94,20 @@ class LocationList extends React.Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // Get info
-    fetch(`http://${SERVER_URL}/location-list`)
-    .then(response => response.json())
-    .then(data => {
+    try {
+      const response = await axios.get(`http://${SERVER_URL}/location-list`);
+      const data = response.data;
       this.setState({
         originalLocationList: data,
         shownLocationList: data,
         isFetching: false
       });
-    })
-    .catch(error => {
+    } catch (error) {
       console.log('Error fetching location list:', error);
       this.setState({ isFetching: false });
-    });
+    }
   }
 
   // For User task 1, sort the list
@@ -168,16 +190,22 @@ class LocationList extends React.Component {
 
 // 'My favorites' page
 const Favorites = () => {
-  return <h1>This is a Favorites page.</h1>
+  return (
+    <div className='main-container'>
+      <h1>This is a Favorites page.</h1>
+    </div>
+  )
 }
 
 // No matched link
 const NoMatch = () => {
   const location = useLocation()
   return (
+    <div className='main-container'>
       <h3>
           No Match for <code>{location.pathname}</code>
       </h3>
+    </div>
   )
 }
 

@@ -1,19 +1,35 @@
+import '../App.css'
+import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function LoginForm() {
-  const [email, setEmail] = useState('');
+const SERVER_URL = 'localhost:5000'
+
+function LoginForm({onLogin}) {
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const login = (e) => {
-    e.preventDefault();
-    // 处理登录逻辑
-    // 这里可以调用后端 API 进行验证等操作
-    // 示例中暂未包含完整的登录逻辑
+  const navigate = useNavigate();
 
-    // 在这里设置错误消息，如果登录失败的话
-    setErrorMessage('登录失败，请检查您的凭据。');
+  async function login (e) {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`http://${SERVER_URL}/api/login`, {
+        userName: userName,
+        password: password
+      });
+      const { user } = response.data;
+      onLogin(user)
+      navigate('/');
+    } catch (error) {
+      if (error.response.data.message) {
+        setErrorMessage(error.response.data.message);
+      } else {
+        setErrorMessage('Something went wrong. Please try again.');
+      }
+      setPassword('')
+    }
   };
 
   return (
@@ -21,20 +37,17 @@ function LoginForm() {
       <h1>Log in</h1>
       <form onSubmit={login}>
         <div>
-          <label htmlFor="email">Email</label>
-          <br />
+          <label htmlFor="user-name" className='lb'>User Name</label>
           <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            id="user-name"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
             required
           />
         </div>
-        <br />
         <div>
-          <label htmlFor="password">Password</label>
-          <br />
+          <label htmlFor="password" className='lb'>Password</label>
           <input
             type="password"
             id="password"
@@ -43,13 +56,10 @@ function LoginForm() {
             required
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit" id='send'>Submit</button>
       </form>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <Link to="/signup">Don't have an account? Sign up</Link>
-      <br />
-      <br />
-      <Link to="/forget-password">Forget password?</Link>
     </div>
   );
 }
