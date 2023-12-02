@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import LocationPage from './components/LocationPage';
 import LoginComponent from './components/LoginComponent';
+import SignupComponent from './components/SignupComponent';
 
 const SERVER_URL = 'localhost:5000'
 const colorSet = {
@@ -42,6 +43,12 @@ function App() {
     localStorage.setItem('user', JSON.stringify(user))
   }
 
+  function logout() {
+    localStorage.removeItem('user')
+    setUser({})
+    window.location.href = '/login'
+  }
+
   return (
     <BrowserRouter>
       <nav>
@@ -51,14 +58,14 @@ function App() {
           </div>
         </div>
         <div className='width-50 flex' style={{height: '100%', flexDirection: 'row-reverse'}}>
-          <div className='nav-cell right' onMouseEnter={onMouseEnterUserName} onMouseLeave={onMouseLeaveUserName}>
-            { user && user.userName /*&& user.idToken*/ ?
+          <div className='nav-cell right' onMouseEnter={user.userName ? onMouseEnterUserName : undefined} onMouseLeave={user.userName ? onMouseLeaveUserName : undefined}>
+            {user && user.userName /*&& user.idToken*/ ?
             <div className='user-name'>{user.userName.length > 10 ? user.userName.substring(0, 8) + '...' : user.userName}</div> :
-            <Link to='/login' className='user-name'>Login</Link>}
+            <Link to='/login' className='user-name' style={{cursor: 'pointer'}}>Login</Link>}
           </div>
           <div className='dropdown' style={{display: isUserNameHovered ? 'flex' : 'none'}} onMouseEnter={onMouseEnterUserName} onMouseLeave={onMouseLeaveUserName}>
-              <div className='dropdown-cell'>1</div>
-              <div className='dropdown-cell'>2</div>
+              <Link className='dropdown-cell' to='favorites'> My favorites</Link>
+              <div className='dropdown-cell' onClick={logout}>Log out</div>
             </div>
         </div>
       </nav>
@@ -71,6 +78,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/location-page/:id" element={<LocationPage />} />
           <Route path="/login" element={<LoginComponent onLogin={setUserAfterLogin} />} />
+          <Route path='/signup' element={<SignupComponent onSignup={setUserAfterLogin}/>} />
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>

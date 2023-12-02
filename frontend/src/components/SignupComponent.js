@@ -5,22 +5,22 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const SERVER_URL = 'localhost:5000'
 
-function LoginComponent({onLogin}) {
+function SignupComponent({onSignup}) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
 
-  async function login (e) {
+  async function signup (e) {
     e.preventDefault();
     try {
-      const response = await axios.post(`http://${SERVER_URL}/api/login`, {
+      const response = await axios.post(`http://${SERVER_URL}/api/signup`, {
         userName: userName,
         password: password
       });
       const { user } = response.data;
-      onLogin(user)
+      onSignup(user)
       navigate('/');
     } catch (error) {
       if (error.response.data.message) {
@@ -35,7 +35,7 @@ function LoginComponent({onLogin}) {
   return (
     <div className='login-form'>
       <h1>Log in</h1>
-      <form onSubmit={login}>
+      <form onSubmit={signup}>
         <div>
           <label htmlFor="user-name" className='lb'>User Name</label>
           <input
@@ -59,9 +59,9 @@ function LoginComponent({onLogin}) {
         <button type="submit" id='send'>Submit</button>
       </form>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <Link to="/signup">Don't have an account? Sign up</Link>
+      <Link to="/login">Already have an account? Log in</Link>
     </div>
   );
 }
 
-export default LoginComponent;
+export default SignupComponent;
