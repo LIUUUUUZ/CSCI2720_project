@@ -8,7 +8,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5555
 let LOCATION_LIST = []
 let USER_LIST = []
 

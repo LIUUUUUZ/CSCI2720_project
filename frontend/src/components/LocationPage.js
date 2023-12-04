@@ -3,7 +3,7 @@ import '../App.css';
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-const SERVER_URL = 'localhost:5000'
+const SERVER_URL = 'localhost:5555'
 const colorSet = {
   CUHKPurple: "#740f6B",
   CUHKYellow: "#E6B001"

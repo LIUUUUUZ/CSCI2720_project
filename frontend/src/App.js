@@ -13,7 +13,7 @@ import LocationPage from './components/LocationPage';
 import LoginComponent from './components/LoginComponent';
 import SignupComponent from './components/SignupComponent';
 
-const SERVER_URL = 'localhost:5000'
+const SERVER_URL = 'localhost:5555'
 const colorSet = {
   CUHKPurple: "#740f6B",
   CUHKYellow: "#E6B001"

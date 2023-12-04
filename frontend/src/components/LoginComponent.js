@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const SERVER_URL = 'localhost:5000'
+const SERVER_URL = 'localhost:5555'
 
 function LoginComponent({onLogin}) {
   const [userName, setUserName] = useState('');
