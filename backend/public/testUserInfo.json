@@ -1,0 +1,20 @@
+[
+  {
+    "userName": "nidie",
+    "password": "123456",
+    "isAdmin": true,
+    "favoriteVenueID": []
+  },
+  {
+    "userName": "erzi",
+    "password": "111111",
+    "isAdmin": false,
+    "favoriteVenueID": []
+  },
+  {
+    "userName": "zzzzzxxxxxcccccvvvvv",
+    "password": "111111",
+    "isAdmin": false,
+    "favoriteVenueID": []
+  }
+]
