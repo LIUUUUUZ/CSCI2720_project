@@ -7,6 +7,7 @@ import {
   Route,
   Link,
   useLocation,
+  Navigate
 } from 'react-router-dom';
 import LocationPage from './components/LocationPage';
 import LoginComponent from './components/LoginComponent';
@@ -59,7 +60,7 @@ function App() {
         </div>
         <div className='width-50 flex' style={{height: '100%', flexDirection: 'row-reverse'}}>
           <div className='nav-cell right' onMouseEnter={user.userName ? onMouseEnterUserName : undefined} onMouseLeave={user.userName ? onMouseLeaveUserName : undefined}>
-            {user && user.userName /*&& user.idToken*/ ?
+            {user && user.userName ?
             <div className='user-name'>{user.userName.length > 10 ? user.userName.substring(0, 8) + '...' : user.userName}</div> :
             <Link to='/login' className='user-name' style={{cursor: 'pointer'}}>Login</Link>}
           </div>
@@ -74,11 +75,11 @@ function App() {
       </div>
 
       <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/location-page/:id" element={<LocationPage />} />
-          <Route path="/login" element={<LoginComponent onLogin={setUserAfterLogin} />} />
-          <Route path='/signup' element={<SignupComponent onSignup={setUserAfterLogin}/>} />
+          <Route path="/" element={ user.userName ? <Home /> : <Navigate to="/login" />} />
+          <Route path="/favorites" element={ user.userName ? <Favorites /> : <Navigate to="/login" />} />
+          <Route path="/location-page/:id" element={ user.userName ? <LocationPage /> : <Navigate to="/login" />} />
+          <Route path="/login" element={ user.userName ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
+          <Route path='/signup' element={ user.userName ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
@@ -216,8 +217,10 @@ const NoMatch = () => {
   return (
     <div className='main-container'>
       <h3>
-          No Match for <code>{location.pathname}</code>
+          No Match for <code>{location.pathname}</code>!<br />
+          Redirecting to login
       </h3>
+
     </div>
   )
 }

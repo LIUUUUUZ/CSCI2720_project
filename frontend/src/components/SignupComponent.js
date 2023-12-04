@@ -34,7 +34,7 @@ function SignupComponent({onSignup}) {
 
   return (
     <div className='login-form'>
-      <h1>Log in</h1>
+      <h1>Sign up</h1>
       <form onSubmit={signup}>
         <div>
           <label htmlFor="user-name" className='lb'>User Name</label>
@@ -44,6 +44,7 @@ function SignupComponent({onSignup}) {
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             required
+            autoComplete='on'
           />
         </div>
         <div>
@@ -54,6 +55,7 @@ function SignupComponent({onSignup}) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete='on'
           />
         </div>
         <button type="submit" id='send'>Submit</button>

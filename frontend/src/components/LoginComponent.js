@@ -44,6 +44,7 @@ function LoginComponent({onLogin}) {
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
             required
+            autoComplete='on'
           />
         </div>
         <div>
@@ -54,6 +55,7 @@ function LoginComponent({onLogin}) {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete='on'
           />
         </div>
         <button type="submit" id='send'>Submit</button>

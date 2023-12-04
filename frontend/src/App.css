@@ -23,13 +23,6 @@ nav a {
   color: white;
 }
 
-form {
-  border-radius: 10px;
-  padding: 20px;
-  width: 300px;
-  margin: 40px auto;
-}
-
 .lb {
   display: block;
   margin-top: 10px;
@@ -157,6 +150,10 @@ form {
 
 .login-form {
   text-align: center;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  margin: 40px auto;
 }
 
 .login-form button {
