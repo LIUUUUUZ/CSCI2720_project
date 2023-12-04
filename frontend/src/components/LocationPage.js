@@ -96,7 +96,10 @@ const MapContainer = () => {
 
   return (
     <div className="location-map-container" id="location-map-container">
-      This is a mapContainer
+      <gmp-map center="22.416889190673828,114.21018981933594" zoom="14" map-id="DEMO_MAP_ID">
+        <gmp-advanced-marker position="22.416889190673828,114.21018981933594" title="My location">
+        </gmp-advanced-marker>
+      </gmp-map>
     </div>
   );
 };
