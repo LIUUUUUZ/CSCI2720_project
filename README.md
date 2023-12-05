@@ -4,3 +4,4 @@ This is the group project for course CSCI2720
 The group members are:
 
 Wang Yitian
+Song Yifei
