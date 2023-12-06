@@ -11,6 +11,7 @@ app.use(cors())
 const port = process.env.PORT || 5555
 let LOCATION_LIST = []
 let USER_LIST = []
+let COMMENT_LIST = []
 
 /* Initialize the whole requested data */
 function readFileAsync(filePath) {
@@ -27,6 +28,7 @@ function readFileAsync(filePath) {
 
 const venueInfoPath = './public/testVenueInfo.json';
 const userInfoPath = './public/testUserInfo.json';
+const commentListPath = './public/testCommentList.json';
 
 readFileAsync(venueInfoPath)
 .then((data) => {
@@ -39,6 +41,14 @@ readFileAsync(venueInfoPath)
 readFileAsync(userInfoPath)
 .then((data) => {
   USER_LIST = data;
+})
+.catch((err) => {
+  console.error('Error reading user file:', err);
+});
+
+readFileAsync(commentListPath)
+.then((data) => {
+  COMMENT_LIST = data;
 })
 .catch((err) => {
   console.error('Error reading user file:', err);
@@ -59,9 +69,13 @@ app.get('/location-list', (req, res) => {
 
 // Visit any location page
 app.get('/location-page/:locationID', (req, res) => {
-  const locationID = req.params.locationID
+  const id = req.params.locationID
+  const data = {
+    location: LOCATION_LIST[id],
+    comments: COMMENT_LIST[id].commentList
+  }
   try {
-    res.json(LOCATION_LIST[locationID]);
+    res.json(data);
   } catch (err) {
     console.error('Error parsing JSON:', err);
     res.status(500).json({ error: 'Internal Server Error' });
