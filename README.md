@@ -92,7 +92,7 @@ res:
 
 ### Non-user
 
-1. 登录成功和注册（登录和注册的req相同，登录成功的res和注册的res也相同）  
+1. 登录成功和注册（登录和注册的req相同，登录成功的res和注册的res也相同；不明确具体要求，暂定为此）  
 req:
 ```
 post('/api/login', {
@@ -118,3 +118,7 @@ res.status(401).json({ message: 'Authentication failed. Please try again.' });
 ```
 res.status(401).json({ message: 'No user credential found. Please sign up.' });
 ```
+
+### Admin
+
+这部分涉及mongoDB，实话说我暂时不会搞，如何分工或许可以商议一下……
