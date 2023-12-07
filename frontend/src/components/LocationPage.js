@@ -51,13 +51,15 @@ function LocationPage()  {
   if (isFetching) {
     return <div>Loading...</div>
   } else {
+    const location_map = location.info.latitude + ',' + location.info.longitude
+    // console.log(location_map)
     return (
       <div className='main-container'>
         <div id='hider' className='hider'>
           <div style={{width: '98vw', height: '20vh'}}></div>
         </div>
         <div>
-          <MapContainer />
+          <MapContainer position={location_map}/>
         </div>
         <div id='location-info-container' className='location-info-container'>
           <div>
@@ -72,7 +74,7 @@ function LocationPage()  {
   }
 }
 
-function MapContainer() {
+function MapContainer(props) {
   useEffect(() => {
     const handleScroll = () => {
       const mapContainer = document.getElementById('location-map-container')
@@ -120,8 +122,12 @@ function MapContainer() {
 
   return (
     <div className="location-map-container-start" id="location-map-container">
-      <gmp-map center="22.416889190673828,114.21018981933594" zoom="14" map-id="DEMO_MAP_ID">
+      {/* <gmp-map center="22.416889190673828,114.21018981933594" zoom="14" map-id="DEMO_MAP_ID">
         <gmp-advanced-marker position="22.416889190673828,114.21018981933594" title="My location">
+        </gmp-advanced-marker>
+      </gmp-map> */}
+      <gmp-map center={props.position} zoom="14" map-id="DEMO_MAP_ID">
+        <gmp-advanced-marker position={props.position} title="Venue location">
         </gmp-advanced-marker>
       </gmp-map>
     </div>
