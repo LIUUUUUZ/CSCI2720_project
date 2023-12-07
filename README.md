@@ -115,6 +115,22 @@ res: （和2.进入某个地点页面时返回的对象中comments的值是同�
   ...
 ]
 ```
+5. 删评论时
+req:
+```
+delete('/api/delete-comment/:commentId')
+```
+res:（和2.进入某个地点页面时返回的对象中comments的值是同一个东西）
+```
+[
+  {
+    text,
+    userName,
+    ID
+  },
+  ...
+]
+```
 
 ### Non-user
 

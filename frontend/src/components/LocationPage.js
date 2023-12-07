@@ -186,7 +186,7 @@ function CommentContainer({user, location, comments, setComments}) {
   return (
     <div>
       <div>
-        <input id='new-comment' value={newComment} onChange={e => setNewComment(e.target.value)} />
+        <textarea id='new-comment' value={newComment} onChange={e => setNewComment(e.target.value)} /><br/>
         <button id='send' type='submit' onClick={e => submitNewComment(e)}>Send</button>
       </div>
       {comments.map((comment, index) => (

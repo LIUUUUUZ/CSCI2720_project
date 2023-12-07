@@ -5,6 +5,7 @@ const fs = require('fs')
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 const port = process.env.PORT || 5555
 app.use(express.static('app'));
 
@@ -19,7 +20,7 @@ db.once('open', () => {
     console.log('DB connection successful');
     console.log('Server is online. ')
     
-    // Schema
+    // Venue Schema
     //   const venueSchema = mongoose.Schema(
     //     {
     //         ID: Number,
@@ -103,6 +104,19 @@ db.once('open', () => {
           console.error('Error parsing JSON:', err);
           res.status(500).json({ error: 'Internal Server Error' });
         });
+      }).catch(err => {
+        console.error('Error parsing JSON:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      });
+    });
+
+    //删评论
+    app.delete('/api/delete-comment/:commentId', (req, res) => {
+      const id = req.params.commentId;
+      Venue.findOne({comments: {$elemMatch: {ID: id}}}).then(venue => {
+        venue.comments = venue.comments.filter(comment => comment.ID != id);
+        venue.save();
+        res.json(venue.comments);
       }).catch(err => {
         console.error('Error parsing JSON:', err);
         res.status(500).json({ error: 'Internal Server Error' });
