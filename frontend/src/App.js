@@ -12,6 +12,7 @@ import {
 import LocationPage from './components/LocationPage';
 import LoginComponent from './components/LoginComponent';
 import SignupComponent from './components/SignupComponent';
+import AdminPage from './components/AdminPage';
 
 const SERVER_URL = 'localhost:5555'
 const colorSet = {
@@ -57,6 +58,9 @@ function App() {
           <div className='nav-cell left'>
             <Link to="/">Home</Link>
           </div>
+          <div className='nav-cell left'>
+            <Link to='/admin-page'>Admin</Link>
+          </div>
         </div>
         <div className='width-50 flex' style={{height: '100%', flexDirection: 'row-reverse'}}>
           <div className='nav-cell right' onMouseEnter={user.userName ? onMouseEnterUserName : undefined} onMouseLeave={user.userName ? onMouseLeaveUserName : undefined}>
@@ -80,6 +84,7 @@ function App() {
           <Route path="/location-page/:id" element={ user.userName ? <LocationPage user={user} setUser={setUser} /> : <Navigate to="/login" />} />
           <Route path="/login" element={ user.userName ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
           <Route path='/signup' element={ user.userName ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
+          <Route path='/admin-page' element={<AdminPage user={user} />} />
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
