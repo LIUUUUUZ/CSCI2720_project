@@ -110,6 +110,19 @@ db.once('open', () => {
       });
     });
 
+    //删评论
+    app.delete('/api/delete-comment/:commentId', (req, res) => {
+      const id = req.params.commentId;
+      Venue.findOne({comments: {$elemMatch: {ID: id}}}).then(venue => {
+        venue.comments = venue.comments.filter(comment => comment.ID != id);
+        venue.save();
+        res.json(venue.comments);
+      }).catch(err => {
+        console.error('Error parsing JSON:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      });
+    });
+
 
     // 存入测试数据 testVenueInfo.json
     app.get('/test-location-list', (req, res) => {
