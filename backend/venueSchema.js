@@ -99,6 +99,7 @@ const venueSchema = mongoose.Schema(
         comments:[{
             text: String,
             userName: String,
+            ID: {type: Number, unique: true},
         }]
     },
 )

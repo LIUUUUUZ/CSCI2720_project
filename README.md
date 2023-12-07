@@ -72,7 +72,8 @@ res:
   comments: [
     {
       text,
-      userName
+      userName,
+      ID
     },
     ...
   ]
@@ -108,7 +109,8 @@ res: （和2.进入某个地点页面时返回的对象中comments的值是同�
 [
   {
     text,
-    userName
+    userName,
+    ID
   },
   ...
 ]

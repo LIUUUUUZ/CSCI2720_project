@@ -43,6 +43,7 @@ db.once('open', () => {
     //         comments:[{
     //             text: String,
     //             userName: String,
+    //             ID
     //         }]
     //     },
     // )
@@ -83,12 +84,25 @@ db.once('open', () => {
     //发布评论
     app.post('/api/add-comment', (req, res) => {
       console.log(req.body);
-      const id = req.body.locationID;
-      const { userName, text } = req.body;
-      Venue.findOne({ID: id}).then(venue => {
-        venue.comments.push({text, userName});
-        venue.save();
-        res.json(venue.comments);
+      let MaxID = 0;
+      Venue.find({}).then(venues => {
+        for (let i = 0; i < venues.length; i++) {
+          for (let j = 0; j < venues[i].comments.length; j++) {
+            if (venues[i].comments[j].ID > MaxID) {
+              MaxID = venues[i].comments[j].ID;
+            }
+          }
+        }
+        const id = MaxID + 1;
+        const { locationID, userName, text } = req.body;
+        Venue.findOne({ID: locationID}).then(venue => {
+          venue.comments.push({text, userName, ID: id});
+          venue.save();
+          res.json(venue.comments);
+        }).catch(err => {
+          console.error('Error parsing JSON:', err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        });
       }).catch(err => {
         console.error('Error parsing JSON:', err);
         res.status(500).json({ error: 'Internal Server Error' });
