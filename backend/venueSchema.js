@@ -97,8 +97,8 @@ const venueSchema = mongoose.Schema(
             rateNum: {type: Number, default: 0},
         },
         comments:[{
-            userName: String,
             text: String,
+            userName: String,
         }]
     },
 )

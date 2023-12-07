@@ -4,6 +4,7 @@ const cors = require('cors')
 const fs = require('fs')
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: false }))
 const port = process.env.PORT || 5555
 app.use(express.static('app'));
 
@@ -40,8 +41,8 @@ db.once('open', () => {
     //             rateNum: {type: Number, default: 0},
     //         },
     //         comments:[{
-    //             userName: String,
     //             text: String,
+    //             userName: String,
     //         }]
     //     },
     // )
@@ -78,7 +79,24 @@ db.once('open', () => {
       });
     });
 
-    // test for location-list, initial test data
+
+    //发布评论
+    app.post('/api/add-comment', (req, res) => {
+      console.log(req.body);
+      const id = req.body.locationID;
+      const { userName, text } = req.body;
+      Venue.findOne({ID: id}).then(venue => {
+        venue.comments.push({text, userName});
+        venue.save();
+        res.json(venue.comments);
+      }).catch(err => {
+        console.error('Error parsing JSON:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      });
+    });
+
+
+    // 存入测试数据 testVenueInfo.json
     app.get('/test-location-list', (req, res) => {
       /* Initialize the whole requested data */
       function readFileAsync(filePath) {
@@ -106,6 +124,20 @@ db.once('open', () => {
         res.status(500).json({ error: 'Internal Server Error' });
       });
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
 
 // start the server
