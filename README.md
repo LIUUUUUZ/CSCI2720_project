@@ -90,6 +90,26 @@ res:
 }
 ```
 
+4. 发布评论时
+req:
+```
+post('/api/add-comment', {
+  locationID,
+  userName,  
+  text
+})
+```  
+res: （和2.进入某个地点页面时返回的对象中comments的值是同一个东西）
+```
+[
+  {
+    text,
+    userName
+  },
+  ...
+]
+```
+
 ### Non-user
 
 1. 登录成功和注册（登录和注册的req相同，登录成功的res和注册的res也相同；不明确具体要求，暂定为此）  
