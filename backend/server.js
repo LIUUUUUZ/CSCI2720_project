@@ -4,6 +4,7 @@ const cors = require('cors')
 const fs = require('fs')
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: false }))
 const port = process.env.PORT || 5555
 app.use(express.static('app'));
 
@@ -40,8 +41,9 @@ db.once('open', () => {
     //             rateNum: {type: Number, default: 0},
     //         },
     //         comments:[{
-    //             userName: String,
     //             text: String,
+    //             userName: String,
+    //             ID
     //         }]
     //     },
     // )
@@ -78,7 +80,37 @@ db.once('open', () => {
       });
     });
 
-    // test for location-list, initial test data
+
+    //发布评论
+    app.post('/api/add-comment', (req, res) => {
+      console.log(req.body);
+      let MaxID = 0;
+      Venue.find({}).then(venues => {
+        for (let i = 0; i < venues.length; i++) {
+          for (let j = 0; j < venues[i].comments.length; j++) {
+            if (venues[i].comments[j].ID > MaxID) {
+              MaxID = venues[i].comments[j].ID;
+            }
+          }
+        }
+        const id = MaxID + 1;
+        const { locationID, userName, text } = req.body;
+        Venue.findOne({ID: locationID}).then(venue => {
+          venue.comments.push({text, userName, ID: id});
+          venue.save();
+          res.json(venue.comments);
+        }).catch(err => {
+          console.error('Error parsing JSON:', err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        });
+      }).catch(err => {
+        console.error('Error parsing JSON:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      });
+    });
+
+
+    // 存入测试数据 testVenueInfo.json
     app.get('/test-location-list', (req, res) => {
       /* Initialize the whole requested data */
       function readFileAsync(filePath) {
@@ -106,6 +138,20 @@ db.once('open', () => {
         res.status(500).json({ error: 'Internal Server Error' });
       });
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
 
 // start the server
