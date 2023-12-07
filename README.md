@@ -31,7 +31,9 @@ res:
       locationName: 这个地点的名称,
       latitude,
       longitude,
-      eventNum: 这个地点的Event数目
+      eventNum: 这个地点的Event数目,
+      rate: 评分,
+      rateNum： 评分人数
     }
   },
   ...
@@ -62,7 +64,9 @@ res:
       locationName: 这个地点的名称,
       latitude,
       longitude,
-      eventNum: 这个地点的Event数目
+      eventNum: 这个地点的Event数目,
+      rate: 评分,
+      rateNum： 评分人数
     }
   },
   comments: [
