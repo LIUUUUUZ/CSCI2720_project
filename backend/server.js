@@ -20,7 +20,7 @@ db.once('open', () => {
     console.log('DB connection successful');
     console.log('Server is online. ')
     
-    // Schema
+    // Venue Schema
     //   const venueSchema = mongoose.Schema(
     //     {
     //         ID: Number,
