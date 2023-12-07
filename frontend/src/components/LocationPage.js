@@ -10,10 +10,11 @@ const colorSet = {
   CUHKYellow: "#E6B001"
 }
 
-function LocationPage({user})  {
+function LocationPage({user, setUser})  {
   const [location, setLocation] = useState({})
   const [comments, setComments] = useState([])
   const [isFetching, setIsFetching] = useState(true)
+  const [isFavorite, setIsFavorite] = useState(false)
   const [shownContainer, setShownContainer] = useState('events')
 
   const { id } = useParams();
@@ -23,6 +24,17 @@ function LocationPage({user})  {
     /* To be finished*/
     navigate("/")
   };
+
+  async function addToFavorite() {
+    const response = await axios.post(`http://${SERVER_URL}/api/add-favorite`, {
+      userName: user.userName,
+      locationID: location.ID
+    })
+    const newFavoriteID = response.data
+    user.favoriteVenueID = newFavoriteID
+    setUser(user)
+    user.favoriteVenueID.includes(location.ID) ? setIsFavorite(true) : setIsFavorite(false)
+  }
 
   function showComments() {
     setShownContainer('comments')
@@ -62,6 +74,11 @@ function LocationPage({user})  {
           <MapContainer position={location_map}/>
         </div>
         <div id='location-info-container' className='location-info-container'>
+          <div>
+            {isFavorite ?
+            <button onClick={addToFavorite}>Remove from favorite</button> :
+            <button onClick={addToFavorite}>Add to favorite</button>}
+          </div>
           <div>
             <button onClick={showEvents}>Events</button>
             <button onClick={showComments}>Comments</button>
