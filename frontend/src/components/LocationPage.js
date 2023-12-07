@@ -10,7 +10,7 @@ const colorSet = {
   CUHKYellow: "#E6B001"
 }
 
-function LocationPage()  {
+function LocationPage({user})  {
   const [location, setLocation] = useState({})
   const [comments, setComments] = useState([])
   const [isFetching, setIsFetching] = useState(true)
@@ -67,7 +67,7 @@ function LocationPage()  {
             <button onClick={showComments}>Comments</button>
           </div>
           {shownContainer === 'events' ? <EventContainer location={location} /> : undefined}
-          {shownContainer === 'comments' ? <CommentContainer comments={comments} /> : undefined}
+          {shownContainer === 'comments' ? <CommentContainer user={user} location={location} comments={comments} setComments={setComments} /> : undefined}
         </div>
       </div>
     )
@@ -150,9 +150,28 @@ function EventContainer({location}) {
   )
 }
 
-function CommentContainer({comments}) {
+function CommentContainer({user, location, comments, setComments}) {
+  const [newComment, setNewComment] = useState('')
+
+  async function submitNewComment(e) {
+    try {
+      const response = await axios.post(`http://${SERVER_URL}/api/add-comment`, {
+        locationID: location.ID,
+        userName: user.userName,  
+        text: newComment
+      })
+      setComments(response.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <div>
+      <div>
+        <input id='new-comment' value={newComment} onChange={e => setNewComment(e.target.value)} />
+        <button id='send' type='submit' onClick={e => submitNewComment(e)}>Send</button>
+      </div>
       {comments.map((comment, index) => (
         <div key={index} style={{border: '2px, black, solid'}}>
           <div style={{fontWeight: 'bold'}}>{comment.userName}</div>

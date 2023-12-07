@@ -77,7 +77,7 @@ function App() {
       <Routes>
           <Route path="/" element={ user.userName ? <Home /> : <Navigate to="/login" />} />
           <Route path="/favorites" element={ user.userName ? <Favorites /> : <Navigate to="/login" />} />
-          <Route path="/location-page/:id" element={ user.userName ? <LocationPage /> : <Navigate to="/login" />} />
+          <Route path="/location-page/:id" element={ user.userName ? <LocationPage user={user} /> : <Navigate to="/login" />} />
           <Route path="/login" element={ user.userName ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
           <Route path='/signup' element={ user.userName ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
           <Route path="*" element={<NoMatch />} />
