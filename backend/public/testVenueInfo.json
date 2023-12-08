@@ -138,8 +138,8 @@
     ],
     "info": {
       "locationName": "Hong Kong Central Library (G/F Exhibition Gallery)",
-      "latitude": NULL,
-      "longitude": NULL,
+      "latitude": 0,
+      "longitude": 0,
       "eventNum": 4,
       "rate": 0,
       "rateNum": 0
