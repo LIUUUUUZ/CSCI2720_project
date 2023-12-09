@@ -100,7 +100,7 @@
          "time":[
           "29/12/2023 11:00-20:00",
           "30/12/2023",
-          "31/12/2023"
+          "31/12/2023",
           "1/1/2024 09:00-20:00",
           "2/1/2024 09:00-19:00"
         ],
@@ -134,7 +134,7 @@
         "description": "Yesterday's Vacation in HK",
         "presenter": "Government Records Service",
         "price": 0
-      },
+      }
     ],
     "info": {
       "locationName": "Hong Kong Central Library (G/F Exhibition Gallery)",
