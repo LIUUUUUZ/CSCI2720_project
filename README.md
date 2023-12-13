@@ -163,7 +163,7 @@ res.status(401).json({ message: 'No user credential found. Please sign up.' });
 2. 注册
 req:
 ```
-post('/api/login', {
+post('/api/signup', {
   userName,
   password
 })
