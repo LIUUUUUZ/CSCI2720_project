@@ -309,8 +309,6 @@ const ModifyEvent = () => {
 function AdminPage({ user }) {
   const navigate = useNavigate();
 
-  // Other functions and logic...
-
   return (
     <div className='main-container'>
       <h1>Admin Page</h1>
