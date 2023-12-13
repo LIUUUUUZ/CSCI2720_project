@@ -160,6 +160,7 @@ db.once('open', () => {
             res.status(500).json({ error: 'Internal server error' });
         }
     });
+    
 // Log-in
     app.post('/api/login', async (req, res) => {
         try {
@@ -190,7 +191,33 @@ db.once('open', () => {
             res.status(500).json({ error: 'Internal server error' });
         }
     });
+    
+// Favourite-list
+     app.post('/api/add-favorite', async (req, res) => {
+       try {
+           const { username, locationID } = req.body;
+           const user = await User.findOne({ username });
 
+           // Check if the location is already in the favorite list, if existed, remove
+           if (user.favoriteVenueID.includes(locationID)) {
+               const index = user.favoriteVenueID.indexOf(locationID);
+               if (index > -1) { // only splice when item is found
+                   user.favoriteVenueID.splice(index, 1);
+               }
+           }
+           //else add
+           else user.favoriteVenueID.push(locationID);
+
+           await user.save();
+
+           // Return the updated favorite list in the response
+           res.json({ favoriteVenueID: user.favoriteVenueID });
+       } catch (error) {
+           console.error(error);
+           res.status(500).json({ error: 'Internal server error' });
+       }
+     });
+    
     // 存入测试数据 testVenueInfo.json
     app.get('/test-location-list', (req, res) => {
       /* Initialize the whole requested data */
