@@ -1,8 +1,3 @@
-/*
-TODO: CHANGE THE EVENTNUM
-CHECK THE FUCKING HANDLE EVENT CHANGE
-*/
-
 import '../App.css';
 import React, { useEffect, useState } from "react";
 import { useParams, Routes, Route, useNavigate, Link } from "react-router-dom";
