@@ -134,7 +134,7 @@ res:（和2.进入某个地点页面时返回的对象中comments的值是同一
 
 ### Non-user
 
-1. 登录成功和注册（登录和注册的req相同，登录成功的res和注册的res也相同；不明确具体要求，暂定为此）  
+1. 登录  
 req:
 ```
 post('/api/login', {
@@ -142,15 +142,14 @@ post('/api/login', {
   password
 })
 ```  
-res:
+登录成功的res:
 ```
 {
   userName,
   isAdmin: 一个boolean,
   favoriteVenueID: [1, 2, 3, ...]
 }
-```
-
+```  
 登录失败的res:  
 密码错误
 ```
@@ -159,6 +158,28 @@ res.status(401).json({ message: 'Authentication failed. Please try again.' });
 用户不存在
 ```
 res.status(401).json({ message: 'No user credential found. Please sign up.' });
+```
+
+2. 注册
+req:
+```
+post('/api/login', {
+  userName,
+  password
+})
+```  
+注册成功的res:
+```
+{
+  userName,
+  isAdmin: 一个boolean,
+  favoriteVenueID: [1, 2, 3, ...]
+}
+```  
+注册失败的res:  
+用户已存在
+```
+res.status(401).json({ message: 'The user already exists. Please log in.' });
 ```
 
 ### Admin
