@@ -187,28 +187,36 @@ db.once('open', () => {
 // Log-in
     app.post('/api/login', async (req, res) => {
         try {
-            const { username, password } = req.body;
+            const username = req.body.userName;
+            const password = req.body.password;
             console.log('Received Request Body:', req.body);
-            // Check if the user exists
-            const user = await User.findOne({ username:username });
-
-            if (!user) {
-                return res.status(401).json({ message: 'No user credential found. Please sign up.' });
-            }
-
-            // Check if the password is correct
-            const isPasswordValid = (password==user.password);
-
-            if (!isPasswordValid) {
-                return res.status(401).json({ message: 'Authentication failed. Please try again.' });
-            }
-
-            // Return the user information in the response
-            res.json({
-                username: user.username,
-                isAdmin: user.isAdmin,
-                favoriteVenueID: user.favoriteVenueID
+            // Check if the user exists by find the username in database
+            User.findOne({username:username}).then(user => {
+              if (!user) {
+                return res.status(401).json({ message: 'The user does not exist. Please sign up.' });
+              }
+              else {
+                // console.log('username:', username, 'password:', password)
+                // Check if the password is correct
+                console.log(user);
+                const isPasswordValid = (password==user.password);
+                if (!isPasswordValid) {
+                  return res.status(401).json({ message: 'Wrong password. Please try again.' });
+                }
+                else {
+                  console.log({
+                    username: user.username,
+                    isAdmin: user.isAdmin,
+                    favoriteVenueID: user.favoriteVenueID
+                    });
+                }
+              }
+            }).catch(err => {
+              console.error('Error parsing JSON:', err);
+              res.status(500).json({ error: 'Internal Server Error' });
             });
+
+            
         } catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal server error' });
