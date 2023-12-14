@@ -36,29 +36,33 @@ function SignupComponent({onSignup}) {
     <div className='login-form'>
       <h1>Sign up</h1>
       <form onSubmit={signup}>
-        <div>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <label htmlFor="user-name" className='lb'>User Name</label>
           <input
             type="text"
             id="user-name"
+            className="form-control me-2"
+            style={{width: "30vw", }}
             value={username}
             onChange={(e) => setUserName(e.target.value)}
             required
             autoComplete='on'
           />
         </div>
-        <div>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <label htmlFor="password" className='lb'>Password</label>
           <input
             type="password"
             id="password"
+            className="form-control me-2"
+            style={{width: "30vw", }}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             autoComplete='on'
           />
         </div>
-        <button type="submit" id='send'>Submit</button>
+        <button type="submit" id='send' className="btn btn-outline-success">Submit</button>
       </form>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <Link to="/login">Already have an account? Log in</Link>
