@@ -32,6 +32,7 @@ function App() {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setUser(user);
+      console.log('User logged in:', user);
     }
   }, [])
 
@@ -82,12 +83,12 @@ function App() {
       </div>
 
       <Routes>
-        <Route path="/" element={ user.username ? <Home setLocations={setLocations} /> : <Navigate to="/login" />} />
-        <Route path="/favorites" element={ user.username ? <Favorites user={user} locations={locations} /> : <Navigate to="/login" />} />
-        <Route path="/location-page/:id" element={ user.username ? <LocationPage user={user} setUser={setUser} /> : <Navigate to="/login" />} />
-        <Route path="/login" element={ user.username ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
-        <Route path='/signup' element={ user.username ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
-        <Route path='/admin-page' element={<AdminPage user={user} />} />
+        <Route path="/" element={ user.userName ? <Home setLocations={setLocations} /> : <Navigate to="/login" />} />
+        <Route path="/favorites" element={ user.userName ? <Favorites user={user} locations={locations} /> : <Navigate to="/login" />} />
+        <Route path="/location-page/:id" element={ user.userName ? <LocationPage user={user} setUser={setUser} /> : <Navigate to="/login" />} />
+        <Route path="/login" element={ user.userName ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
+        <Route path='/signup' element={ user.userName ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
+        <Route path='/admin-page/*' element={<AdminPage user={user} />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
