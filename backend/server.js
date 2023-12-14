@@ -2,16 +2,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const fs = require('fs')
+// import adminServer from './adminServer.js'
+
 
 // (testing) import the User model
-const User = require('./userSchema.js');
+
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 const port = process.env.PORT || 5555
 app.use(express.static('app'));
-
 const mongoose = require('mongoose');
 app.use(cors());
 
@@ -52,6 +53,8 @@ db.once('open', () => {
     //     },
     // )
     Venue = require('./venueSchema.js');
+    User = require('./userSchema.js');
+
 
     //进入时加载主页的location列表  
     app.get('/location-list', (req, res) => {
@@ -130,32 +133,52 @@ db.once('open', () => {
     app.post('/api/signup', async (req, res) => {
         try {
             console.log('Received Request Body:', req.body);
-            const { username, password } = req.body;
-
+            const username = req.body.userName;
+            const password = req.body.password;
+            console.log('username:', username, 'password:', password);
             // Check if the username is already taken
-            const existingUser = await User.findOne({ username });
+            const existingUser = await User.findOne({username:username });
             if (existingUser) {
                 return res.status(401).json({ message: 'The user already exists. Please log in.' });
             }
 
-            // Create a new user using testing data without hashing the password
-            const newUser = new User({
-                username,
-                password, // Store the password as plain text
-                isAdmin: false,
-                favoriteVenueID: []
-            });
+            // // Create a new user using testing data without hashing the password
+            // const newUser = new User({
+            //     username,
+            //     password, // Store the password as plain text
+            //     isAdmin: false,
+            //     favoriteVenueID: []
+              // }); //unique??????
 
             // Save the user to the database
-            await newUser.save();
+            const user = new User({
+              username: username,
+              password: password,
+              isAdmin: false,
+              favoriteVenueID: []
+            })
+            await user.save();
+            res.json({
+              username: user.username,
+              isAdmin: user.isAdmin,
+              favoriteVenueID: user.favoriteVenueID
+            })
+            // await newUser.save();
 
             // Return the user information in the response
-            res.json({
-                username: newUser.username,
-                isAdmin: newUser.isAdmin,
-                favoriteVenueID: newUser.favoriteVenueID
-            });
-        } catch (error) {
+            // res.send({
+            //     // username: newUser.username,
+            //     // isAdmin: newUser.isAdmin,
+            //     // favoriteVenueID: newUser.favoriteVenueID
+            //     // username: user.username,
+            //     // isAdmin: user.isAdmin,
+            //     // favoriteVenueID: user.favoriteVenueID
+            //     // test
+            //     userName: 'test',
+            //     isAdmin: false,
+            //     favoriteVenueID: []
+            // });
+        }catch (error) {
             console.error(error);
             res.status(500).json({ error: 'Internal server error' });
         }
@@ -165,9 +188,9 @@ db.once('open', () => {
     app.post('/api/login', async (req, res) => {
         try {
             const { username, password } = req.body;
-
+            console.log('Received Request Body:', req.body);
             // Check if the user exists
-            const user = await User.findOne({ username });
+            const user = await User.findOne({ username:username });
 
             if (!user) {
                 return res.status(401).json({ message: 'No user credential found. Please sign up.' });
