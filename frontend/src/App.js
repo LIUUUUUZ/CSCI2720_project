@@ -22,6 +22,7 @@ const colorSet = {
 
 function App() {
   const [user, setUser] = useState({});
+  const [locations, setLocations] = useState([])
   const [isUserNameHovered, setIsUserNameHovered] = useState(false);
 
   useEffect(() => {
@@ -69,9 +70,9 @@ function App() {
             <Link to='/login' className='user-name' style={{cursor: 'pointer'}}>Login</Link>}
           </div>
           <div className='dropdown' style={{display: isUserNameHovered ? 'flex' : 'none'}} onMouseEnter={onMouseEnterUserName} onMouseLeave={onMouseLeaveUserName}>
-              <Link className='dropdown-cell' to='favorites'> My favorites</Link>
-              <div className='dropdown-cell' onClick={logout}>Log out</div>
-            </div>
+            <Link className='dropdown-cell' to='favorites'> My favorites</Link>
+            <div className='dropdown-cell' onClick={logout}>Log out</div>
+          </div>
         </div>
       </nav>
       <div id='a-cunning-margin' className='a-cunning-margin'>
@@ -79,23 +80,23 @@ function App() {
       </div>
 
       <Routes>
-          <Route path="/" element={ user.userName ? <Home /> : <Navigate to="/login" />} />
-          <Route path="/favorites" element={ user.userName ? <Favorites /> : <Navigate to="/login" />} />
-          <Route path="/location-page/:id" element={ user.userName ? <LocationPage user={user} setUser={setUser} /> : <Navigate to="/login" />} />
-          <Route path="/login" element={ user.userName ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
-          <Route path='/signup' element={ user.userName ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
-          <Route path='/admin-page' element={<AdminPage user={user} />} />
-          <Route path="*" element={<NoMatch />} />
+        <Route path="/" element={ user.userName ? <Home setLocations={setLocations} /> : <Navigate to="/login" />} />
+        <Route path="/favorites" element={ user.userName ? <Favorites user={user} locations={locations} /> : <Navigate to="/login" />} />
+        <Route path="/location-page/:id" element={ user.userName ? <LocationPage user={user} setUser={setUser} /> : <Navigate to="/login" />} />
+        <Route path="/login" element={ user.userName ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
+        <Route path='/signup' element={ user.userName ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
+        <Route path='/admin-page' element={<AdminPage user={user} />} />
+        <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
   );
 }
 
 // Home page
-const Home = () => {
+const Home = ({setLocations}) => {
   return (
     <div className='main-container'>
-      <LocationList />
+      <LocationList setLocations={setLocations} />
     </div>
   )
 }
@@ -123,6 +124,7 @@ class LocationList extends React.Component {
         shownLocationList: data,
         isFetching: false
       });
+      this.props.setLocations(data)
     } catch (error) {
       console.log('Error fetching location list:', error);
       this.setState({ isFetching: false });
@@ -177,6 +179,13 @@ class LocationList extends React.Component {
     } else {
       return (
         <div>
+          <div className="location-map-container-start" id="location-map-container">
+            {<gmp-map center="114.16,22.38" zoom="14" map-id="HOME_MAP">
+            <gmp-advanced-marker position="114.16,22.38" title="Venue location"></gmp-advanced-marker>
+            </gmp-map>}
+          </div>
+          <br />
+
           <form className="d-flex" role="search" style={{marginBottom: '2vh'}}>
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={this.state.searchText} onChange={event => this.handleSearchChange(event)} />
             <button className="btn btn-outline-success" type="submit" onClick={this.searchLocations}>Search</button>
@@ -191,7 +200,7 @@ class LocationList extends React.Component {
             <button className="list-group-item list-group-item-action flex-fill"
             style={{backgroundColor: colorSet.CUHKPurple, color: "white"}}
             onClick={this.sortList}>
-              Event Numbers
+              Total Events
             </button>
           </ul>
 
@@ -201,6 +210,8 @@ class LocationList extends React.Component {
               <Link to={`/location-page/${location.ID}`} className="list-group-item list-group-item-action flex-fill">{location.info.eventNum}</Link>
             </ul>
           ))}
+
+          <br />
         </div>
       );
     }
@@ -208,10 +219,18 @@ class LocationList extends React.Component {
 }
 
 // 'My favorites' page
-const Favorites = () => {
+const Favorites = ({user, locations}) => {
+  useEffect(() => {
+    
+  }, [])
+
   return (
     <div className='main-container'>
-      <h1>This is a Favorites page.</h1>
+      {locations.map(location => (<div key={location.ID}>{
+        user.favoriteVenueID.includes(location.ID) ?
+        <div key={location.id}>{location.info.locationName}</div> : undefined
+      }</div>)
+    )}
     </div>
   )
 }

@@ -9,7 +9,7 @@ const colorSet = {
   CUHKYellow: "#E6B001"
 }
 
-function LocationPage({user, setUser})  {
+function LocationPage({user, setUser}) {
   const [location, setLocation] = useState({})
   const [comments, setComments] = useState([])
   const [isFetching, setIsFetching] = useState(true)
@@ -32,6 +32,7 @@ function LocationPage({user, setUser})  {
     const newFavoriteID = response.data
     user.favoriteVenueID = newFavoriteID
     setUser(user)
+    localStorage.setItem('user', JSON.stringify(user))
     user.favoriteVenueID.includes(location.ID) ? setIsFavorite(true) : setIsFavorite(false)
   }
 
@@ -50,6 +51,9 @@ function LocationPage({user, setUser})  {
       const data = response.data;
       setLocation(data.location);
       setComments(data.comments);
+      if (user.favoriteVenueID.includes(data.location.ID)) {
+        setIsFavorite(true)
+      }
       setIsFetching(false);
     })
     .catch(error => {
@@ -151,10 +155,31 @@ function MapContainer(props) {
 };
 
 function EventContainer({location}) {
+  const [highestPrice, setHighestPrice] = useState(0)
+  const [shownEvents, setShownEvents] = useState([])
   const events = location.events
+
+  const filterHighestPrice = () => {
+    setShownEvents(events.filter(event => event.price <= highestPrice))
+  }
+
+  const resetHighestPrice = () => {
+    setHighestPrice(0)
+    setShownEvents(events)
+  }
+
+  useEffect(() => {
+    setShownEvents(events)
+  }, [])
+
   return (
     <div>
-      {events.map(event => (
+      <div>
+        <input id='price-filter' type='number' min={0} step={1} value={highestPrice} onChange={e => setHighestPrice(e.target.value)}></input>
+        <button onClick={filterHighestPrice}>Filter</button>
+        <button onClick={resetHighestPrice}>Reset</button>
+      </div>
+      {shownEvents.map(event => (
         <div key={event.ID} style={{border: '2px, black, solid'}}>
           <div>{event.time}</div>
           <div>{event.description}</div>
@@ -169,7 +194,7 @@ function EventContainer({location}) {
 function CommentContainer({user, location, comments, setComments}) {
   const [newComment, setNewComment] = useState('')
 
-  async function submitNewComment(e) {
+  async function submitNewComment() {
     try {
       const response = await axios.post(`http://${SERVER_URL}/api/add-comment`, {
         locationID: location.ID,
