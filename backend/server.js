@@ -159,11 +159,8 @@ db.once('open', () => {
               favoriteVenueID: []
             })
             await user.save();
-            res.json({
-              username: user.username,
-              isAdmin: user.isAdmin,
-              favoriteVenueID: user.favoriteVenueID
-            })
+
+            return res.status(200).json({user/*, idToken*/});
             // await newUser.save();
 
             // Return the user information in the response
