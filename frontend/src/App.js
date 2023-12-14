@@ -186,8 +186,8 @@ class LocationList extends React.Component {
             {/* {<gmp-map center="114.16,22.38" zoom="14" map-id="HOME_MAP">
             <gmp-advanced-marker position="114.16,22.38" title="Venue location"></gmp-advanced-marker>
             </gmp-map>} */}
-            <gmp-map center="114.16,22.38" zoom="14" map-id="DEMO_MAP_ID">
-              <gmp-advanced-marker position="114.16,22.38" title="Venue location">
+            <gmp-map center="22.416889190673828,114.21018981933594" zoom="14" map-id="DEMO_MAP_ID">
+              <gmp-advanced-marker position="22.416889190673828,114.21018981933594" title="Venue location">
               </gmp-advanced-marker>
             </gmp-map>
           </div>
