@@ -1,6 +1,7 @@
 body {
   --CUHK-purple: #740f6B;
   --CUHK-yellow: #E6B001;
+  --Map-blue: #1C73E8;
   --border-grey: #DEE2E6;
   --hover-grey: #F8F9FA;
   --action-grey: #E9ECEF;
@@ -154,59 +155,64 @@ nav a {
 }
 
 .location-info-container {
-  width: 80vw;
+  width: 60vw;
   height: 211vh;
   position: relative;
   top: 0;
+  left: 10vw;
 }
 
 .location-button-line-container-start {
   height: 11vh;
-  border: 2px solid lightblue;
+  border-left: 2px solid var(--CUHK-purple);
+  border-top: 2px solid var(--CUHK-purple);
+  border-right: 2px solid var(--CUHK-purple);
+  border-radius: 10px 10px 0 0;
   z-index: 90;
   background-color: white;
 }
 
 .location-button-line-container-end {
   height: 11vh;
-  width: 80vw;
-  border: 2px solid lightblue;
+  width: 60vw;
+  border: 2px solid var(--CUHK-purple);
+  border-radius: 10px 10px 0 0;
   z-index: 90;
   background-color: white;
   position: fixed;
   top: 29vh;
-  left: 10vw;
+  left: 20vw;
 }
 
 .location-second-line-container-start {
-  width: 80vw;
+  width: 60vw-2px;
   height: 9vh;
-  border-bottom: 2px solid lightblue;
+  border-bottom: 2px solid var(--CUHK-purple);
 }
 
 .location-second-line-container-end {
-  width: 80vw;
+  width: 60vw;
   height: 9vh;
-  border-left: 2px solid lightblue;
-  border-bottom: 2px solid lightblue;
-  border-right: 2px solid lightblue;
+  border-left: 2px solid var(--CUHK-purple);
+  border-bottom: 2px solid var(--CUHK-purple);
+  border-right: 2px solid var(--CUHK-purple);
   z-index: 90;
   background-color: white;
   position: fixed;
   top: 40vh;
-  left: 10vw;
+  left: 20vw;
 }
 
 .location-info-body-container-start {
-  border-left: 2px solid lightblue;
-  border-bottom: 2px solid lightblue;
-  border-right: 2px solid lightblue;
+  border-left: 2px solid var(--CUHK-purple);
+  border-bottom: 2px solid var(--CUHK-purple);
+  border-right: 2px solid var(--CUHK-purple);
 }
 
 .location-info-body-container-end {
-  border-left: 2px solid lightblue;
-  border-bottom: 2px solid lightblue;
-  border-right: 2px solid lightblue;
+  border-left: 2px solid var(--CUHK-purple);
+  border-bottom: 2px solid var(--CUHK-purple);
+  border-right: 2px solid var(--CUHK-purple);
   position: relative;
   top: 20vh;
 }
