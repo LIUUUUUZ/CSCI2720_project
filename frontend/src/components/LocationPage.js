@@ -33,6 +33,7 @@ function LocationPage({user, setUser}) {
     user.favoriteVenueID = newFavoriteID
     setUser(user)
     localStorage.setItem('user', JSON.stringify(user))
+    // console.log(user.favoriteVenueID.favoriteVenueID)
     user.favoriteVenueID.includes(location.ID) ? setIsFavorite(true) : setIsFavorite(false)
   }
 

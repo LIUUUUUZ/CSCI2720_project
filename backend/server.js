@@ -228,23 +228,23 @@ db.once('open', () => {
 // Favourite-list
      app.post('/api/add-favorite', async (req, res) => {
        try {
-           const { username, locationID } = req.body;
-           const user = await User.findOne({ username });
-
-           // Check if the location is already in the favorite list, if existed, remove
-           if (user.favoriteVenueID.includes(locationID)) {
-               const index = user.favoriteVenueID.indexOf(locationID);
-               if (index > -1) { // only splice when item is found
-                   user.favoriteVenueID.splice(index, 1);
-               }
-           }
-           //else add
-           else user.favoriteVenueID.push(locationID);
-
-           await user.save();
-
-           // Return the updated favorite list in the response
-           res.json({ favoriteVenueID: user.favoriteVenueID });
+          const username = req.body.username;
+          const locationID = req.body.locationID;
+          User.findOne({ username }).then(user => {
+            user.favoriteVenueID = Array.isArray(user.favoriteVenueID) ? user.favoriteVenueID : [];
+            if (user.favoriteVenueID.includes(locationID)){
+              user.favoriteVenueID = user.favoriteVenueID.filter(item => item != locationID);
+            }
+            else{user.favoriteVenueID.push(locationID)};
+            return user
+          }).then(user => {
+            console.log(user.favoriteVenueID);
+            user.save();
+            return res.json(user.favoriteVenueID);
+          }).catch(err => {
+            console.error('Error parsing JSON:', err);
+            res.status(500).json({ error: 'Internal Server Error' });
+          });
        } catch (error) {
            console.error(error);
            res.status(500).json({ error: 'Internal server error' });
