@@ -188,7 +188,7 @@ db.once('open', () => {
 // Log-in
     app.post('/api/login', async (req, res) => {
         try {
-            const username = req.body.userName;
+            const username = req.body.username;
             const password = req.body.password;
             console.log('Received Request Body:', req.body);
             // Check if the user exists by find the username in database

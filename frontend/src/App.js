@@ -32,7 +32,7 @@ function App() {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setUser(user);
-      console.log('User logged in:', user);
+      // console.log('User logged in:', user);
     }
   }, [])
 
@@ -183,9 +183,13 @@ class LocationList extends React.Component {
       return (
         <div>
           <div className="location-map-container-start" id="home-map-container">
-            {<gmp-map center="114.16,22.38" zoom="14" map-id="HOME_MAP">
+            {/* {<gmp-map center="114.16,22.38" zoom="14" map-id="HOME_MAP">
             <gmp-advanced-marker position="114.16,22.38" title="Venue location"></gmp-advanced-marker>
-            </gmp-map>}
+            </gmp-map>} */}
+            <gmp-map center="114.16,22.38" zoom="14" map-id="DEMO_MAP_ID">
+              <gmp-advanced-marker position="114.16,22.38" title="Venue location">
+              </gmp-advanced-marker>
+            </gmp-map>
           </div>
           <br />
 
