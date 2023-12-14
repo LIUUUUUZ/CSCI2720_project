@@ -24,7 +24,9 @@ function App() {
   const [user, setUser] = useState({});
   const [locations, setLocations] = useState([])
   const [isUserNameHovered, setIsUserNameHovered] = useState(false);
-
+  // emergency logout
+  // localStorage.removeItem('user')
+  // setUser({})
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {

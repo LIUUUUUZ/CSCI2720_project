@@ -2,13 +2,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const fs = require('fs')
+// import adminServer from './adminServer.js'
+
+
+// (testing) import the User model
+
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 const port = process.env.PORT || 5555
 app.use(express.static('app'));
-
 const mongoose = require('mongoose');
 app.use(cors());
 
@@ -49,6 +53,8 @@ db.once('open', () => {
     //     },
     // )
     Venue = require('./venueSchema.js');
+    User = require('./userSchema.js');
+
 
     //进入时加载主页的location列表  
     app.get('/location-list', (req, res) => {
@@ -123,7 +129,118 @@ db.once('open', () => {
       });
     });
 
+ // Sign-up
+    app.post('/api/signup', async (req, res) => {
+        try {
+            console.log('Received Request Body:', req.body);
+            const username = req.body.userName;
+            const password = req.body.password;
+            console.log('username:', username, 'password:', password);
+            // Check if the username is already taken
+            const existingUser = await User.findOne({username:username });
+            if (existingUser) {
+                return res.status(401).json({ message: 'The user already exists. Please log in.' });
+            }
 
+            // // Create a new user using testing data without hashing the password
+            // const newUser = new User({
+            //     username,
+            //     password, // Store the password as plain text
+            //     isAdmin: false,
+            //     favoriteVenueID: []
+              // }); //unique??????
+
+            // Save the user to the database
+            const user = new User({
+              username: username,
+              password: password,
+              isAdmin: false,
+              favoriteVenueID: []
+            })
+            await user.save();
+            res.json({
+              username: user.username,
+              isAdmin: user.isAdmin,
+              favoriteVenueID: user.favoriteVenueID
+            })
+            // await newUser.save();
+
+            // Return the user information in the response
+            // res.send({
+            //     // username: newUser.username,
+            //     // isAdmin: newUser.isAdmin,
+            //     // favoriteVenueID: newUser.favoriteVenueID
+            //     // username: user.username,
+            //     // isAdmin: user.isAdmin,
+            //     // favoriteVenueID: user.favoriteVenueID
+            //     // test
+            //     userName: 'test',
+            //     isAdmin: false,
+            //     favoriteVenueID: []
+            // });
+        }catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    });
+    
+// Log-in
+    app.post('/api/login', async (req, res) => {
+        try {
+            const { username, password } = req.body;
+            console.log('Received Request Body:', req.body);
+            // Check if the user exists
+            const user = await User.findOne({ username:username });
+
+            if (!user) {
+                return res.status(401).json({ message: 'No user credential found. Please sign up.' });
+            }
+
+            // Check if the password is correct
+            const isPasswordValid = (password==user.password);
+
+            if (!isPasswordValid) {
+                return res.status(401).json({ message: 'Authentication failed. Please try again.' });
+            }
+
+            // Return the user information in the response
+            res.json({
+                username: user.username,
+                isAdmin: user.isAdmin,
+                favoriteVenueID: user.favoriteVenueID
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    });
+    
+// Favourite-list
+     app.post('/api/add-favorite', async (req, res) => {
+       try {
+           const { username, locationID } = req.body;
+           const user = await User.findOne({ username });
+
+           // Check if the location is already in the favorite list, if existed, remove
+           if (user.favoriteVenueID.includes(locationID)) {
+               const index = user.favoriteVenueID.indexOf(locationID);
+               if (index > -1) { // only splice when item is found
+                   user.favoriteVenueID.splice(index, 1);
+               }
+           }
+           //else add
+           else user.favoriteVenueID.push(locationID);
+
+           await user.save();
+
+           // Return the updated favorite list in the response
+           res.json({ favoriteVenueID: user.favoriteVenueID });
+       } catch (error) {
+           console.error(error);
+           res.status(500).json({ error: 'Internal server error' });
+       }
+     });
+    
     // 存入测试数据 testVenueInfo.json
     app.get('/test-location-list', (req, res) => {
       /* Initialize the whole requested data */
@@ -152,12 +269,36 @@ db.once('open', () => {
         res.status(500).json({ error: 'Internal Server Error' });
       });
     });
+    // 存入测试数据 testUserInfo.json
+    app.get('/test-user-list', (req, res) => {
+        const filePath = './public/testUserInfo.json';
 
+        function readFileAsync(filePath) {
+            return new Promise((resolve, reject) => {
+                fs.readFile(filePath, 'utf8', (err, data) => {
+                    if (err) {
+                        reject(err);
+                        return;
+                    }
+                    resolve(JSON.parse(data));
+                });
+            });
+        }
 
-
-
-
-
+        readFileAsync(filePath)
+            .then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    // Create a new user instance and save it to the database
+                    const user = new User(data[i]);
+                    user.save();
+                }
+                res.json(data);
+            })
+            .catch((err) => {
+                console.error('Error reading user file:', err);
+                res.status(500).json({ error: 'Internal Server Error' });
+            });
+    });
 
 
 
