@@ -153,7 +153,7 @@ const ModifyEvent = () => {
     setVenueInfo({ ...venueInfo, [e.target.name]: e.target.value });
   };
 
-  const handleVenueFormSubmit = (action) => {
+  const handleVenueFormSubmit = (action, venueId = selectedVenue.ID) => {
     let promise;
     const url = `http://${SERVER_URL}/venues`;
 
@@ -162,7 +162,7 @@ const ModifyEvent = () => {
     } else if (action === 'update') {
       promise = axios.patch(`${url}/${selectedVenue.ID}`, venueInfo);
     } else if (action === 'delete') {
-      promise = axios.delete(`${url}/${selectedVenue.ID}`);
+      promise = axios.delete(`${url}/${venueId}`);
     }
 
     if (promise) {
