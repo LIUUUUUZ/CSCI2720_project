@@ -231,7 +231,7 @@ const Favorites = ({user, locations}) => {
     <div className='main-container'>
       {locations.map(location => (<div key={location.ID}>{
         user.favoriteVenueID.includes(location.ID) ?
-        <div key={location.id}>{location.info.locationName}</div> : undefined
+        <Link to={`/location-page/${location.ID}`} key={location.id}>{location.info.locationName}</Link> : undefined
       }</div>)
     )}
     </div>
