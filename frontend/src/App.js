@@ -18,7 +18,9 @@ import AdminPage from './components/AdminPage';
 const SERVER_URL = 'localhost:5555'
 const colorSet = {
   CUHKPurple: "#740f6B",
-  CUHKYellow: "#E6B001"
+  CUHKYellow: "#E6B001",
+  hoverPurple: "#5a0c53",
+  activePurple: "#44093e"
 }
 
 function App() {
@@ -134,6 +136,7 @@ class LocationList extends React.Component {
         isFetching: false
       });
       this.props.setLocations(data)
+      console.log(this.state.shownLocationList)
     } catch (error) {
       console.log('Error fetching location list:', error);
       this.setState({ isFetching: false });
@@ -176,7 +179,6 @@ class LocationList extends React.Component {
     let text = this.state.searchText
     let list = this.state.originalLocationList
     list = list.filter((location) => location.info.locationName.toLowerCase().includes(text.toLowerCase()))
-    console.log(list)
     this.setState({shownLocationList: list})
   }
 
@@ -189,12 +191,11 @@ class LocationList extends React.Component {
       return (
         <div>
           <div className="location-map-container-start" id="home-map-container">
-            {/* {<gmp-map center="114.16,22.38" zoom="14" map-id="HOME_MAP">
-            <gmp-advanced-marker position="114.16,22.38" title="Venue location"></gmp-advanced-marker>
-            </gmp-map>} */}
-            <gmp-map center="22.416889190673828,114.21018981933594" zoom="14" map-id="DEMO_MAP_ID">
-              <gmp-advanced-marker position="22.416889190673828,114.21018981933594" title="Venue location">
-              </gmp-advanced-marker>
+            <gmp-map center="22.378021,114.163526" zoom="11" map-id="DEMO_MAP_ID">
+              {shownLocationList.map(location => (
+                <gmp-advanced-marker key={location.ID} position={`${location.info.latitude},${location.info.longitude}`} title="Venue location">
+                </gmp-advanced-marker>
+              ))}
             </gmp-map>
           </div>
           <br />
@@ -210,7 +211,7 @@ class LocationList extends React.Component {
             style={{backgroundColor: colorSet.CUHKPurple, color: "white"}}>
               Venue
             </button>
-            <button className="list-group-item list-group-item-action flex-fill"
+            <button className="list-group-item list-group-item-action flex-fill list-title"
             style={{backgroundColor: colorSet.CUHKPurple, color: "white"}}
             onClick={this.sortList}>
               Total Events
