@@ -234,25 +234,24 @@ class LocationList extends React.Component {
 
 // 'My favorites' page
 const Favorites = ({user, locations}) => {
-  useEffect(() => {
-    
-  }, [])
+  const navigate = useNavigate()
 
   return (
     <div className='main-container'>
-    {user.favoriteVenueID.length !== 0 ? (
-      locations.map(location => (
-        <div key={location.ID}>
-          {user.favoriteVenueID.includes(location.ID) ? (
-            <Link to={`/location-page/${location.ID}`} key={location.ID}>
-              {location.info.locationName}
-            </Link>
-          ) : undefined}
-        </div>
-      ))
-    ) : (
-      <div>1</div>
-    )}
+      <h1 style={{marginBottom: '3vh'}}>My favorite</h1>
+      {user.favoriteVenueID.length !== 0 ? (
+        locations.map(location => (
+          <ul key={location.ID} className="list-group list-group-horizontal-lg margin-bot">
+            {user.favoriteVenueID.includes(location.ID) ? (
+              <Link className="list-group-item list-group-item-action flex-fill" to={`/location-page/${location.ID}`} key={location.ID}>
+                {location.info.locationName}
+              </Link>
+            ) : undefined}
+          </ul>
+        ))
+      ) : (
+        <h3>No favorite location.</h3>
+      )}
   </div>
   )
 }
