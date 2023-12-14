@@ -19,6 +19,7 @@ const ModifyUser = () => {
 
   useEffect(() => {
     fetchUsers();
+    
   }, []);
 
   const handleUserSelect = (username) => {
@@ -316,8 +317,12 @@ const ModifyEvent = () => {
     </div>
   );
 };
-function AdminPage({ user }) {
+function AdminPage({ user, killCunningMargin }) {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    killCunningMargin()
+  }, [])
 
   return (
     <div className='main-container'>

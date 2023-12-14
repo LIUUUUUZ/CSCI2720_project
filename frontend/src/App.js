@@ -7,7 +7,8 @@ import {
   Route,
   Link,
   useLocation,
-  Navigate
+  Navigate,
+  useNavigate
 } from 'react-router-dom';
 import LocationPage from './components/LocationPage';
 import LoginComponent from './components/LoginComponent';
@@ -34,6 +35,7 @@ function App() {
       setUser(user);
       // console.log('User logged in:', user);
     }
+    killCunningMargin()
   }, [])
 
   function onMouseEnterUserName() {
@@ -47,6 +49,10 @@ function App() {
   function setUserAfterLogin (user) {
     setUser(user)
     localStorage.setItem('user', JSON.stringify(user))
+  }
+
+  function killCunningMargin () {
+    document.getElementById('a-cunning-margin').style.visibility = 'hidden'
   }
 
   function logout() {
@@ -88,7 +94,7 @@ function App() {
         <Route path="/location-page/:id" element={ user.username ? <LocationPage user={user} setUser={setUser} /> : <Navigate to="/login" />} />
         <Route path="/login" element={ user.username ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
         <Route path='/signup' element={ user.username ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
-        <Route path='/admin-page/*' element={<AdminPage user={user} />} />
+        <Route path='/admin-page/*' element={user.isAdmin ? <AdminPage user={user} killCunningMargin={killCunningMargin} /> : <NoMatch />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
@@ -233,27 +239,53 @@ const Favorites = ({user, locations}) => {
 
   return (
     <div className='main-container'>
-      {locations.map(location => (<div key={location.ID}>{
-        user.favoriteVenueID.includes(location.ID) ?
-        <Link to={`/location-page/${location.ID}`} key={location.id}>{location.info.locationName}</Link> : undefined
-      }</div>)
+    {user.favoriteVenueID.length !== 0 ? (
+      locations.map(location => (
+        <div key={location.ID}>
+          {user.favoriteVenueID.includes(location.ID) ? (
+            <Link to={`/location-page/${location.ID}`} key={location.ID}>
+              {location.info.locationName}
+            </Link>
+          ) : undefined}
+        </div>
+      ))
+    ) : (
+      <div>1</div>
     )}
-    </div>
+  </div>
   )
 }
 
 // No matched link
 const NoMatch = () => {
-  const location = useLocation()
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [time, setTime] = useState(5);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(prevTime => prevTime - 1);
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (time === 0) {
+      navigate('/');
+    }
+  }, [time]);
+
   return (
     <div className='main-container'>
       <h3>
-          No Match for <code>{location.pathname}</code>!<br />
-          Redirecting to login
+        No match or no access permission for <code>{location.pathname}</code>!<br />
+        Redirecting to home page in {time}s...
       </h3>
-
     </div>
-  )
-}
+  );
+};
 
 export default App;
