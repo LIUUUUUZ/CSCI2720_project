@@ -66,9 +66,9 @@ function App() {
           </div>
         </div>
         <div className='width-50 flex' style={{height: '100%', flexDirection: 'row-reverse'}}>
-          <div className='nav-cell right' onMouseEnter={user.userName ? onMouseEnterUserName : undefined} onMouseLeave={user.userName ? onMouseLeaveUserName : undefined}>
-            {user && user.userName ?
-            <div className='user-name'>{user.userName.length > 10 ? user.userName.substring(0, 8) + '...' : user.userName}</div> :
+          <div className='nav-cell right' onMouseEnter={user.username ? onMouseEnterUserName : undefined} onMouseLeave={user.username ? onMouseLeaveUserName : undefined}>
+            {user && user.username ?
+            <div className='user-name'>{user.username.length > 10 ? user.username.substring(0, 8) + '...' : user.username}</div> :
             <Link to='/login' className='user-name' style={{cursor: 'pointer'}}>Login</Link>}
           </div>
           <div className='dropdown' style={{display: isUserNameHovered ? 'flex' : 'none'}} onMouseEnter={onMouseEnterUserName} onMouseLeave={onMouseLeaveUserName}>
@@ -82,11 +82,11 @@ function App() {
       </div>
 
       <Routes>
-        <Route path="/" element={ user.userName ? <Home setLocations={setLocations} /> : <Navigate to="/login" />} />
-        <Route path="/favorites" element={ user.userName ? <Favorites user={user} locations={locations} /> : <Navigate to="/login" />} />
-        <Route path="/location-page/:id" element={ user.userName ? <LocationPage user={user} setUser={setUser} /> : <Navigate to="/login" />} />
-        <Route path="/login" element={ user.userName ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
-        <Route path='/signup' element={ user.userName ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
+        <Route path="/" element={ user.username ? <Home setLocations={setLocations} /> : <Navigate to="/login" />} />
+        <Route path="/favorites" element={ user.username ? <Favorites user={user} locations={locations} /> : <Navigate to="/login" />} />
+        <Route path="/location-page/:id" element={ user.username ? <LocationPage user={user} setUser={setUser} /> : <Navigate to="/login" />} />
+        <Route path="/login" element={ user.username ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
+        <Route path='/signup' element={ user.username ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
         <Route path='/admin-page' element={<AdminPage user={user} />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
@@ -181,7 +181,7 @@ class LocationList extends React.Component {
     } else {
       return (
         <div>
-          <div className="location-map-container-start" id="location-map-container">
+          <div className="location-map-container-start" id="home-map-container">
             {<gmp-map center="114.16,22.38" zoom="14" map-id="HOME_MAP">
             <gmp-advanced-marker position="114.16,22.38" title="Venue location"></gmp-advanced-marker>
             </gmp-map>}

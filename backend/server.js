@@ -47,7 +47,7 @@ db.once('open', () => {
     //         },
     //         comments:[{
     //             text: String,
-    //             userName: String,
+    //             username: String,
     //             ID
     //         }]
     //     },
@@ -101,9 +101,9 @@ db.once('open', () => {
           }
         }
         const id = MaxID + 1;
-        const { locationID, userName, text } = req.body;
+        const { locationID, username, text } = req.body;
         Venue.findOne({ID: locationID}).then(venue => {
-          venue.comments.push({text, userName, ID: id});
+          venue.comments.push({text, username, ID: id});
           venue.save();
           res.json(venue.comments);
         }).catch(err => {
@@ -133,7 +133,7 @@ db.once('open', () => {
     app.post('/api/signup', async (req, res) => {
         try {
             console.log('Received Request Body:', req.body);
-            const username = req.body.userName;
+            const username = req.body.username;
             const password = req.body.password;
             console.log('username:', username, 'password:', password);
             // Check if the username is already taken
@@ -174,7 +174,7 @@ db.once('open', () => {
             //     // isAdmin: user.isAdmin,
             //     // favoriteVenueID: user.favoriteVenueID
             //     // test
-            //     userName: 'test',
+            //     username: 'test',
             //     isAdmin: false,
             //     favoriteVenueID: []
             // });
@@ -400,11 +400,11 @@ app.listen(port, () => {
 
 // // Log in
 // app.post('/api/login', async (req, res) => {
-//   const { userName, password } = req.body;
+//   const { username, password } = req.body;
 //   // Authenticate user with email and password
 //   for (let i = 0; i < USER_LIST.length; i++) {
 //     const user = USER_LIST[i];
-//     if (user.userName === userName) {
+//     if (user.username === username) {
 //       if (user.password === password) {
 //         return res.status(200).json({user/*, idToken*/});
 //       } else {

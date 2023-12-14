@@ -312,7 +312,7 @@ function AdminPage({ user }) {
   return (
     <div className='main-container'>
       <h1>Admin Page</h1>
-      <p>Logged in as: {user.userName}</p>
+      <p>Logged in as: {user.username}</p>
       <button onClick={() => navigate('/admin-page')}>Admin Home</button>
       <button onClick={() => navigate('/admin-page/modify-user')}>Modify User</button>
       <button onClick={() => navigate('/admin-page/modify-event')}>Modify Event</button>

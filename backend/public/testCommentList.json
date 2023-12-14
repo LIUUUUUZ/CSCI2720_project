@@ -4,15 +4,15 @@
     "commentList": [
       {
         "text": "ni kan ni ma ne",
-        "userName": "nidie"
+        "username": "nidie"
       },
       {
         "text": "ni kan ni ma ne1",
-        "userName": "nidie1"
+        "username": "nidie1"
       },
       {
         "text": "ni kan ni ma ne2",
-        "userName": "nidie2"
+        "username": "nidie2"
       }
     ]
   },
@@ -21,15 +21,15 @@
     "commentList": [
       {
         "text": "haha",
-        "userName": "nima"
+        "username": "nima"
       },
       {
         "text": "haha1",
-        "userName": "nima1"
+        "username": "nima1"
       },
       {
         "text": "haha2",
-        "userName": "nima2"
+        "username": "nima2"
       }
     ]
   },
@@ -38,15 +38,15 @@
     "commentList": [
       {
         "text": "miaomiao",
-        "userName": "niumo"
+        "username": "niumo"
       },
       {
         "text": "miaomiao1",
-        "userName": "niumo1"
+        "username": "niumo1"
       },
       {
         "text": "miaomiao2",
-        "userName": "niumo2"
+        "username": "niumo2"
       }
     ]
   }

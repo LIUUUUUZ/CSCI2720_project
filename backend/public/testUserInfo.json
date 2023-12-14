@@ -1,18 +1,18 @@
 [
   {
-    "userName": "nidie",
+    "username": "nidie",
     "password": "123456",
     "isAdmin": true,
     "favoriteVenueID": []
   },
   {
-    "userName": "erzi",
+    "username": "erzi",
     "password": "111111",
     "isAdmin": false,
     "favoriteVenueID": []
   },
   {
-    "userName": "zzzzzxxxxxcccccvvvvv",
+    "username": "zzzzzxxxxxcccccvvvvv",
     "password": "111111",
     "isAdmin": false,
     "favoriteVenueID": []

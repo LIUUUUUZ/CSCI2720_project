@@ -26,7 +26,7 @@ function LocationPage({user, setUser}) {
 
   async function addToFavorite() {
     const response = await axios.post(`http://${SERVER_URL}/api/add-favorite`, {
-      userName: user.userName,
+      username: user.username,
       locationID: location.ID
     })
     const newFavoriteID = response.data
@@ -38,10 +38,24 @@ function LocationPage({user, setUser}) {
 
   function showComments() {
     setShownContainer('comments')
+    const scrollYPercentage = window.scrollY / window.innerHeight * 100
+    if (scrollYPercentage > 60) {
+      const targetScrollY = 0.6 * window.innerHeight;
+      window.scrollTo({
+        top: targetScrollY
+      });
+    }
   }
 
   function showEvents() {
     setShownContainer('events')
+    const scrollYPercentage = window.scrollY / window.innerHeight * 100
+    if (scrollYPercentage > 60) {
+      const targetScrollY = 0.6 * window.innerHeight;
+      window.scrollTo({
+        top: targetScrollY
+      });
+    }
   }
 
   useEffect(() => {
@@ -73,21 +87,19 @@ function LocationPage({user, setUser}) {
         <div id='hider' className='hider'>
           <div style={{width: '98vw', height: '20vh'}}></div>
         </div>
-        <div>
-          <MapContainer position={location_map}/>
-        </div>
+        <MapContainer position={location_map}/>
         <div id='location-info-container' className='location-info-container'>
-          <div>
+          <div id='location-button-line-container' className='location-button-line-container-start'>
             {isFavorite ?
             <button onClick={addToFavorite}>Remove from favorite</button> :
             <button onClick={addToFavorite}>Add to favorite</button>}
-          </div>
-          <div>
             <button onClick={showEvents}>Events</button>
             <button onClick={showComments}>Comments</button>
           </div>
-          {shownContainer === 'events' ? <EventContainer location={location} /> : undefined}
-          {shownContainer === 'comments' ? <CommentContainer user={user} location={location} comments={comments} setComments={setComments} /> : undefined}
+          <div id='location-info-body-container' className='location-info-body-container-start'>
+            {shownContainer === 'events' ? <EventContainer location={location} /> : undefined}
+            {shownContainer === 'comments' ? <CommentContainer user={user} location={location} comments={comments} setComments={setComments} /> : undefined}
+          </div>
         </div>
       </div>
     )
@@ -99,6 +111,9 @@ function MapContainer(props) {
     const handleScroll = () => {
       const mapContainer = document.getElementById('location-map-container')
       const infoContainer = document.getElementById('location-info-container')
+      const buttonContainer = document.getElementById('location-button-line-container')
+      const secondLineContainer = document.getElementById('location-second-line-container')
+      const infoBodyContainer = document.getElementById('location-info-body-container')
       const hider = document.getElementById('hider')
       const cunningMargin = document.getElementById('a-cunning-margin')
 
@@ -108,28 +123,47 @@ function MapContainer(props) {
       
       if (scrollYPercentage >= 0 && scrollYPercentage <= 60) {
         mapContainer.classList.remove('location-map-container-end')
-        mapContainer.classList.add('location-map-container-begin')
+        mapContainer.classList.add('location-map-container-start')
         mapContainer.style.width = 80 - scrollYPercentage + 'vw'
         mapContainer.style.height = 80 - scrollYPercentage + 'vh'
         mapContainer.style.top = scrollYPercentage + 'vh'
 
         infoContainer.style.top = scrollYPercentage + 'vh'
 
+        buttonContainer.classList.remove('location-button-line-container-end')
+        buttonContainer.classList.add('location-button-line-container-start')
+
+        secondLineContainer.classList.remove('location-second-line-container-end')
+        secondLineContainer.classList.add('location-second-line-container-start')
+
+        infoBodyContainer.classList.remove('location-info-body-container-end')
+        infoBodyContainer.classList.add('location-info-body-container-start')
+
         hider.style.visibility = 'hidden'
 
         cunningMargin.style.visibility = 'hidden'
       } else if (scrollYPercentage > 60) {
         mapContainer.classList.add('location-map-container-end')
-        mapContainer.classList.remove('location-map-container-begin')
+        mapContainer.classList.remove('location-map-container-start')
         mapContainer.style.width = 20 + 'vw'
         mapContainer.style.height = 20 + 'vh'
         mapContainer.style.top = 9 + 'vh'
 
         infoContainer.style.top = 80 + 'vh'
 
+        buttonContainer.classList.remove('location-button-line-container-start')
+        buttonContainer.classList.add('location-button-line-container-end')
+        
+        secondLineContainer.classList.remove('location-second-line-container-start')
+        secondLineContainer.classList.add('location-second-line-container-end')
+
+        infoBodyContainer.classList.remove('location-info-body-container-start')
+        infoBodyContainer.classList.add('location-info-body-container-end')
+
         hider.style.visibility = 'visible'
 
         cunningMargin.style.visibility = 'visible'
+      
       }
     };
 
@@ -174,7 +208,7 @@ function EventContainer({location}) {
 
   return (
     <div>
-      <div>
+      <div id='location-second-line-container' className='location-second-line-container-start'>
         <input id='price-filter' type='number' min={0} step={1} value={highestPrice} onChange={e => setHighestPrice(e.target.value)}></input>
         <button onClick={filterHighestPrice}>Filter</button>
         <button onClick={resetHighestPrice}>Reset</button>
@@ -198,7 +232,7 @@ function CommentContainer({user, location, comments, setComments}) {
     try {
       const response = await axios.post(`http://${SERVER_URL}/api/add-comment`, {
         locationID: location.ID,
-        userName: user.userName,  
+        username: user.username,  
         text: newComment
       })
       setComments(response.data)
@@ -209,13 +243,13 @@ function CommentContainer({user, location, comments, setComments}) {
 
   return (
     <div>
-      <div>
+      <div id='location-second-line-container' className='location-second-line-container-start'>
         <textarea id='new-comment' value={newComment} onChange={e => setNewComment(e.target.value)} /><br/>
         <button id='send' type='submit' onClick={e => submitNewComment(e)}>Send</button>
       </div>
       {comments.map((comment, index) => (
         <div key={index} style={{border: '2px, black, solid'}}>
-          <div style={{fontWeight: 'bold'}}>{comment.userName}</div>
+          <div style={{fontWeight: 'bold'}}>{comment.username}</div>
           <div>{comment.text}</div>
         </div>
       ))}

@@ -72,7 +72,7 @@ res:
   comments: [
     {
       text,
-      userName,
+      username,
       ID
     },
     ...
@@ -84,7 +84,7 @@ res:
 req:
 ```
 post('/api/add-favorite', {
-  userName,
+  username,
   locationID
 })
 ```  
@@ -100,7 +100,7 @@ req:
 ```
 post('/api/add-comment', {
   locationID,
-  userName,  
+  username,  
   text
 })
 ```  
@@ -109,7 +109,7 @@ res: （和2.进入某个地点页面时返回的对象中comments的值是同�
 [
   {
     text,
-    userName,
+    username,
     ID
   },
   ...
@@ -125,7 +125,7 @@ res:（和2.进入某个地点页面时返回的对象中comments的值是同一
 [
   {
     text,
-    userName,
+    username,
     ID
   },
   ...
@@ -138,14 +138,14 @@ res:（和2.进入某个地点页面时返回的对象中comments的值是同一
 req:
 ```
 post('/api/login', {
-  userName,
+  username,
   password
 })
 ```  
 登录成功的res:
 ```
 {
-  userName,
+  username,
   isAdmin: 一个boolean,
   favoriteVenueID: [1, 2, 3, ...]
 }
@@ -164,14 +164,14 @@ res.status(401).json({ message: 'No user credential found. Please sign up.' });
 req:
 ```
 post('/api/signup', {
-  userName,
+  username,
   password
 })
 ```  
 注册成功的res:
 ```
 {
-  userName,
+  username,
   isAdmin: 一个boolean,
   favoriteVenueID: [1, 2, 3, ...]
 }

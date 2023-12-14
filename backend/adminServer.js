@@ -67,7 +67,7 @@ db.once('open', async function () {
             },
             comments:[{
                 text: String,
-                userName: String,
+                username: String,
                 ID: {type: Number, unique: true},
             }]
         },
@@ -302,7 +302,7 @@ db.once('open', async function () {
 
         const newid = maxEventId + 1;
         const newcid = maxCommentID + 1;
-            const venue = new Venue({ID: newVenueId,  events: [{ID: newid, time:'1970/01/01 00:00', description: 'PLEASE INITIATE THIS EVENT!', presenter: 'PLEASE INITIATE THIS EVENT!' , price: 0}], info: req.body, comments : [{text: `Greetings from admin. Welcome to ${req.body.locationName}`, userName: 'ADMIN', ID: newcid}]});
+            const venue = new Venue({ID: newVenueId,  events: [{ID: newid, time:'1970/01/01 00:00', description: 'PLEASE INITIATE THIS EVENT!', presenter: 'PLEASE INITIATE THIS EVENT!' , price: 0}], info: req.body, comments : [{text: `Greetings from admin. Welcome to ${req.body.locationName}`, username: 'ADMIN', ID: newcid}]});
             venue.info.eventNum = 1;
             await venue.save();
             res.status(201).send(venue);

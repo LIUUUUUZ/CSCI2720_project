@@ -143,7 +143,7 @@ nav a {
 }
 
 .hider {
-  height: 20vh;
+  height: 21vh;
   width: 100vw-0px;
   position: absolute;
   left: -10vw;
@@ -156,11 +156,59 @@ nav a {
 .location-info-container {
   width: 80vw;
   height: 211vh;
-  background: white;
   position: relative;
   top: 0;
-  word-wrap: break-word;
+}
+
+.location-button-line-container-start {
+  height: 11vh;
   border: 2px solid lightblue;
+  z-index: 90;
+  background-color: white;
+}
+
+.location-button-line-container-end {
+  height: 11vh;
+  width: 80vw;
+  border: 2px solid lightblue;
+  z-index: 90;
+  background-color: white;
+  position: fixed;
+  top: 29vh;
+  left: 10vw;
+}
+
+.location-second-line-container-start {
+  width: 80vw;
+  height: 9vh;
+  border-bottom: 2px solid lightblue;
+}
+
+.location-second-line-container-end {
+  width: 80vw;
+  height: 9vh;
+  border-left: 2px solid lightblue;
+  border-bottom: 2px solid lightblue;
+  border-right: 2px solid lightblue;
+  z-index: 90;
+  background-color: white;
+  position: fixed;
+  top: 40vh;
+  left: 10vw;
+}
+
+.location-info-body-container-start {
+  border-left: 2px solid lightblue;
+  border-bottom: 2px solid lightblue;
+  border-right: 2px solid lightblue;
+}
+
+.location-info-body-container-end {
+  border-left: 2px solid lightblue;
+  border-bottom: 2px solid lightblue;
+  border-right: 2px solid lightblue;
+  position: relative;
+  top: 20vh;
 }
 
 .login-form {

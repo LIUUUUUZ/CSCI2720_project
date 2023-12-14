@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const SERVER_URL = 'localhost:5555'
 
 function SignupComponent({onSignup}) {
-  const [userName, setUserName] = useState('');
+  const [username, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -16,7 +16,7 @@ function SignupComponent({onSignup}) {
     e.preventDefault();
     try {
       const response = await axios.post(`http://${SERVER_URL}/api/signup`, {
-        userName: userName,
+        username: username,
         password: password
       });
       const { user } = response.data;
@@ -41,7 +41,7 @@ function SignupComponent({onSignup}) {
           <input
             type="text"
             id="user-name"
-            value={userName}
+            value={username}
             onChange={(e) => setUserName(e.target.value)}
             required
             autoComplete='on'

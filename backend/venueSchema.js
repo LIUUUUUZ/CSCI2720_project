@@ -22,7 +22,7 @@ const venueSchema = mongoose.Schema(
         },
         comments:[{
             text: String,
-            userName: String,
+            username: String,
             ID: {type: Number, unique: true},
         }]
     },
