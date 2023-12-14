@@ -199,17 +199,18 @@ db.once('open', () => {
               else {
                 // console.log('username:', username, 'password:', password)
                 // Check if the password is correct
-                console.log(user);
                 const isPasswordValid = (password==user.password);
                 if (!isPasswordValid) {
                   return res.status(401).json({ message: 'Wrong password. Please try again.' });
                 }
                 else {
-                  console.log({
-                    username: user.username,
-                    isAdmin: user.isAdmin,
-                    favoriteVenueID: user.favoriteVenueID
-                    });
+                  // console.log({
+                  //   username: user.username,
+                  //   isAdmin: user.isAdmin,
+                  //   favoriteVenueID: user.favoriteVenueID
+                  //   });
+                  // console.log(user);
+                  return res.status(200).json({user/*, idToken*/});
                 }
               }
             }).catch(err => {
