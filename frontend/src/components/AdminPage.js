@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Routes, Route, useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 
-const SERVER_URL = 'localhost:5555'
+const SERVER_URL = 'localhost:5555/admin'
 
 // User Modification Component
 const ModifyUser = () => {
