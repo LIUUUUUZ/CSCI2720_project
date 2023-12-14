@@ -88,7 +88,7 @@ function App() {
         <Route path="/location-page/:id" element={ user.userName ? <LocationPage user={user} setUser={setUser} /> : <Navigate to="/login" />} />
         <Route path="/login" element={ user.userName ? <Navigate to="/" /> : <LoginComponent onLogin={setUserAfterLogin} />} />
         <Route path='/signup' element={ user.userName ? <Navigate to="/" /> : <SignupComponent onSignup={setUserAfterLogin}/>} />
-        <Route path='/admin-page' element={<AdminPage user={user} />} />
+        <Route path='/admin-page*' element={<AdminPage user={user} />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
