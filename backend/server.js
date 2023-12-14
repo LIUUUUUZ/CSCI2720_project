@@ -20,6 +20,7 @@ app.use(cors());
 // connect to database
 mongoose.connect('mongodb+srv://LIUUUUU:3SWeBm4LVhhc30Fi@cluster0.grwtyog.mongodb.net/CSCI2720-project');
 const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Connection error:'))
 db.once('open', () => {
     console.log('DB connection successful');
     console.log('Server is online. ')
