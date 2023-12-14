@@ -111,12 +111,12 @@ nav a {
 
 .a-cunning-margin {
   width: 70vw;
-  height: 3vh;
+  height: 9vh;
   position: fixed;
-  top: 6vh;
+  top: 0vh;
   left: 15vw;
   background: white;
-  z-index: 100;
+  z-index: 90;
   visibility: hidden;
 }
 
