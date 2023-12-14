@@ -243,7 +243,7 @@ const ModifyEvent = () => {
               <label>Location Name:<input type="text" name="locationName" value={venueInfo.locationName} onChange={handleVenueInfoChange} /></label>
               <label>Latitude:<input type="number" name="latitude" value={venueInfo.latitude} onChange={handleVenueInfoChange} /></label>
               <label>Longitude:<input type="number" name="longitude" value={venueInfo.longitude} onChange={handleVenueInfoChange} /></label>
-              <label>Event count:<input type="number" name="eventNum" value={venueInfo.eventNum} onChange={handleVenueInfoChange} /></label>
+              <label>Event count:<input type="text" name="eventNum" value={venueInfo.eventNum} onChange={handleVenueInfoChange} readOnly='true' /></label>
               
               <div><button type="submit">Update Venue</button>
 
