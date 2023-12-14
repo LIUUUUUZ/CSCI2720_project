@@ -2,6 +2,7 @@
 This is the group project for course CSCI2720
 
 The group members are:
+Li Yuji 1155157174
 
 Wang Yitian
 

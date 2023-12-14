@@ -69,7 +69,7 @@ const ModifyUser = () => {
   return (
     <div>
       <h2>Modify User</h2>
-      <table>
+      <table className='table'>
         <thead>
           <tr>
             <th>Username</th>
@@ -79,30 +79,33 @@ const ModifyUser = () => {
           {users.map(user => (
             <tr key={user.username} onClick={() => handleUserSelect(user.username)}>
               <td>{user.username}</td>
+              <td><button  className='btn btn-light' onClick={() => handleUserSelect(user.username)}>Select</button></td>
             </tr>
           ))}
         </tbody>
       </table>
       <form>
-        <div><label for='username'>Username:</label>
-          <input type="text" name="username" value={selectedUser.username} onChange={handleChange} placeholder="Username" required={true} />
+        <div className='mb-3'><label className='form-label' for='username'>Username:</label>
+          <input className='form-control' type="text" name="username" value={selectedUser.username} onChange={handleChange} placeholder="Username" required={true} />
         </div>
-        <div><label for='password'>Password:</label>
-          <input type="text" name="password" value={selectedUser.password} onChange={handleChange} placeholder="Password" required={true} />
+        <div className='mb-3'><label className='form-label' for='password'>Password:</label>
+          <input className='form-control' type="text" name="password" value={selectedUser.password} onChange={handleChange} placeholder="Password" required={true} />
         </div>
-        <div>
-          Is Admin:
-          <label><input type="radio" name="isAdmin" value="true" checked={selectedUser.isAdmin === true} onChange={handleRadioChange} /> Yes</label>
-          <label><input type="radio" name="isAdmin" value="false" checked={selectedUser.isAdmin === false} onChange={handleRadioChange} /> No</label>
+        <div className='mb-3'>
+          <label className='form-label' for='favoriteVenueID'>Favorite Venue ID</label>
+          <input  className='form-control'type="text" name="favoriteVenueID" value={selectedUser.favoriteVenueID.join(', ')} onChange={handleChange} placeholder="Favorite Venue ID" />
         </div>
-        <div>
-          <label for='favoriteVenueID'>Favorite Venue ID</label>
-          <input type="text" name="favoriteVenueID" value={selectedUser.favoriteVenueID.join(', ')} onChange={handleChange} placeholder="Favorite Venue ID" />
+        <div className='form-check'>
+          <label className='form-check-label'><input className='form-check-input' type="radio" name="isAdmin" value="true" checked={selectedUser.isAdmin === true} onChange={handleRadioChange} /> Set as administrator</label>
         </div>
-        <button type="button" onClick={() => handleSubmit('create')}>Create User</button>
-        <button type="button" onClick={() => handleSubmit('update')}>Update User</button>
-        <button type="button" onClick={() => handleSubmit('delete')}>Delete User</button>
+        <div className='form-check'>
+        <label className='form-check-label'><input className='form-check-input' type="radio" name="isAdmin" value="false" checked={selectedUser.isAdmin === false} onChange={handleRadioChange} /> Set as normal user</label>
+        </div>
+        <button className='btn btn-primary' type="button" onClick={() => handleSubmit('create')}>Create User</button>
+        <button className='btn btn-success' type="button" onClick={() => handleSubmit('update')}>Update User</button>
+        <button className='btn btn-warning' type="button" onClick={() => handleSubmit('delete')}>Delete User</button>
       </form>
+      <div className='border-div' style={{height: "0", margin: "10px 0"}}></div>
       <div id='instruction'><h3>IMPORTANT! Read the instructions carefully.</h3><p>To create a user, type all the credentials on the below form.</p>
         <p>To modify or delete a user, click to select the user you want to modify or delete.</p>
         <p>Warning: DO NOT MODIFY USERNAME, or the modification could be unsuccessful or resulting in unexpected behaviors.</p>
@@ -122,18 +125,22 @@ const ModifyEvent = () => {
   const fetchVenueData = () => {
     axios.get(`http://${SERVER_URL}/venues`)
       .then(response => setVenues(response.data))
+      // To refresh everything
+      .then(() => {if(selectedVenue){let originalID = selectedVenue.ID; handleVenueSelect(selectedVenue.ID - 1); handleVenueSelect(originalID)}})
       .catch(error => console.error('Error fetching venues', error));
   };
 
   useEffect(() => {
     fetchVenueData();
+    fetchVenueData();
   }, []);
 
   const handleVenueSelect = (venueID) => {
+    if (venueID === -1) venueID = 1;
     const venue = venues.find(v => v.ID === venueID);
     setSelectedVenue(venue || null);
     setVenueInfo(venue ? venue.info : { locationName: '', latitude: 0, longitude: 0, eventNum: 0 });
-    setEvents(venue ? venue.events : []); // Assuming each venue has an 'events' array
+    setEvents(venue ? venue.events : []); // Assuming each venue has an 'events' array}
   };
 
   const handleEventSelect = (eventId) => {
@@ -153,16 +160,18 @@ const ModifyEvent = () => {
     setVenueInfo({ ...venueInfo, [e.target.name]: e.target.value });
   };
 
-  const handleVenueFormSubmit = (action) => {
+  const handleVenueFormSubmit = (action, venueId = selectedVenue.ID) => {
     let promise;
     const url = `http://${SERVER_URL}/venues`;
 
+    let isPatch = 0;
     if (action === 'create') {
       promise = axios.post(url, venueInfo);
     } else if (action === 'update') {
       promise = axios.patch(`${url}/${selectedVenue.ID}`, venueInfo);
+      isPatch = 1;
     } else if (action === 'delete') {
-      promise = axios.delete(`${url}/${selectedVenue.ID}`);
+      promise = axios.delete(`${url}/${venueId}`);
     }
 
     if (promise) {
@@ -170,7 +179,7 @@ const ModifyEvent = () => {
         .then(response => {
           alert(`Venue ${action} success: ${response.data.message}`);
           resetFormAndSwitchToCreateMode();
-          fetchVenueData(); // Refresh venue data
+          fetchVenueData(isPatch); // Refresh venue data
         })
         .catch(error => {
           alert(`Venue ${action} error: ${error.response.data.message}`);
@@ -195,8 +204,7 @@ const ModifyEvent = () => {
         .then(response => {
           alert(`Success: ${response.data.message}. Please click "Edit" of this venue again, or refresh the page, to see the updated event list.`);
           resetFormAndSwitchToCreateMode();
-          fetchVenueData(); // Refresh venue and event data
-        })
+        }).then(() => fetchVenueData())
         .catch(error => {
           alert(`Error: ${error.response.data.message}`);
           fetchVenueData();
@@ -207,7 +215,7 @@ const ModifyEvent = () => {
   return (
     <div>
       <h2>Venue List</h2>
-      <table>
+      <table className='table'>
         <thead>
           <tr>
             <th>Venue ID</th>
@@ -221,8 +229,8 @@ const ModifyEvent = () => {
               <td>{venue.ID}</td>
               <td>{venue.info.locationName}</td>
               <td>
-                <button onClick={() => handleVenueSelect(venue.ID)}>Edit</button>
-                <button onClick={() => handleVenueFormSubmit('delete', venue.ID)}>Delete</button>
+                <button className='btn btn-primary' onClick={() => handleVenueSelect(venue.ID)}>Edit</button>
+                <button className='btn btn-secondary' onClick={() => handleVenueFormSubmit('delete', venue.ID)}>Delete</button>
               </td>
             </tr>
           ))}
@@ -233,30 +241,30 @@ const ModifyEvent = () => {
         <div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <h2 style={{ marginRight: '10px' }}>Modify Event and Venue</h2>
-            <button onClick={resetFormAndSwitchToCreateMode}>Switch to Create Mode</button>
+            <button  className='btn btn-dark' onClick={resetFormAndSwitchToCreateMode}>Switch to Create Mode</button>
           </div>
 
           <div>
             <h4>{'Edit Venue or Create New Venue'}</h4>
             <form onSubmit={(e) => { e.preventDefault(); handleVenueFormSubmit('update') }}>
               <input type="hidden" name="ID" value={selectedVenue.ID} />
-              <label>Location Name:<input type="text" name="locationName" value={venueInfo.locationName} onChange={handleVenueInfoChange} /></label>
-              <label>Latitude:<input type="number" name="latitude" value={venueInfo.latitude} onChange={handleVenueInfoChange} /></label>
-              <label>Longitude:<input type="number" name="longitude" value={venueInfo.longitude} onChange={handleVenueInfoChange} /></label>
-              <label>Event count:<input type="number" name="eventNum" value={venueInfo.eventNum} onChange={handleVenueInfoChange} /></label>
-              
-              <div><button type="submit">Update Venue</button>
+              <div className='mb-3'><label className='form-label'>Location Name:<input className='form-control' type="text" name="locationName" value={venueInfo.locationName} onChange={handleVenueInfoChange} /></label></div>
+              <div className='mb-3'><label className='form-label'>Latitude:<input className='form-control' type="number" name="latitude" value={venueInfo.latitude} onChange={handleVenueInfoChange} /></label></div>
+              <div className='mb-3'><label className='form-label'>Longitude:<input className='form-control' type="number" name="longitude" value={venueInfo.longitude} onChange={handleVenueInfoChange} /></label></div>
+              <div className='mb-3'><label className='form-label'>Event count:<input className='form-control' type="text" name="eventNum" value={venueInfo.eventNum} onChange={handleVenueInfoChange} readOnly='true' /></label></div>
 
-                <button type="button" onClick={() => handleVenueFormSubmit('delete')}>Delete Venue</button>
-                <button type="button" onClick={() => handleVenueFormSubmit('create')}>USE WITH CAUTION: Create Venue</button></div>
+              <div><button className='btn btn-success' type="submit">Update Venue</button>
+
+                <button className='btn btn-warning' type="button" onClick={() => handleVenueFormSubmit('delete')}>Delete Venue</button>
+                <button className='btn btn-danger' type="button" onClick={() => handleVenueFormSubmit('create')}>USE WITH CAUTION: Create Venue</button></div>
               
 
             </form>
           </div>
-
+        <div className='border-div' style={{height: "0", margin: "10px 0"}}></div>
           <h4 >Events at this Venue</h4>
 
-          <table>
+          <table className='table'>
             <thead>
               <tr>
                 <th>ID</th>
@@ -276,8 +284,8 @@ const ModifyEvent = () => {
                   <td>{event.presenter}</td>
                   <td>{event.price}</td>
                   <td>
-                    <button onClick={() => handleEventSelect(event.ID)}>Select</button>
-                    <button onClick={() => {handleSubmit('delete', event.ID)}}>Delete</button>
+                    <button  className='btn btn-light' onClick={() => handleEventSelect(event.ID)}>Select</button>
+                    <button  className='btn btn-light' onClick={() => {handleSubmit('delete', event.ID)}}>Delete</button>
                   </td>
                 </tr>
               ))}
@@ -289,14 +297,16 @@ const ModifyEvent = () => {
           <h4>{currentEvent.ID ? 'Edit Event' : 'Create New Event'}</h4>
           <form onSubmit={(e) => { e.preventDefault(); handleSubmit(currentEvent.ID ? 'update' : 'create'); }}>
             <input type="hidden" name="ID" value={currentEvent.ID} />
-            <label>Time:<input type="text" name="time" value={currentEvent.time} onChange={handleChange} required={true} /></label>
-            <label>Description:<input type="text" name="description" value={currentEvent.description} onChange={handleChange} required={true} /></label>
-            <label>Presenter:<input type="text" name="presenter" value={currentEvent.presenter} onChange={handleChange} required={true} /></label>
-            <label>Price:<input type="number" name="price" value={currentEvent.price} onChange={handleChange} required={true} /></label>
-            <button type="submit">{currentEvent.ID ? 'Update Event' : 'Create Event'}</button>
+            <div className='mb-3'><label className='form-label'>Time:<input className='form-control' type="text" name="time" value={currentEvent.time} onChange={handleChange} required={true} /></label></div>
+            <div className='mb-3'><label className='form-label'>Description:<input className='form-control' type="text" name="description" value={currentEvent.description} onChange={handleChange} required={true} /></label></div>
+            <div className='mb-3'><label className='form-label'>Presenter:<input className='form-control' type="text" name="presenter" value={currentEvent.presenter} onChange={handleChange} required={true} /></label></div>
+            <div className='mb-3'><label className='form-label'>Price:<input className='form-control' type="number" name="price" value={currentEvent.price} onChange={handleChange} required={true} /></label></div>
+
+            <button className='btn btn-success' type="submit">{currentEvent.ID ? 'Update Event' : 'Create Event'}</button>
           </form>
         </div>
       )}
+      <div className='border-div' style={{height: "0", margin: "10px 0"}}></div>
       <div id='instruction'><h3>IMPORTANT! Read the instructions carefully.</h3><p>Click the Edit button to edit venue info and access all the events in the location. To create a new venue, you should also click any Edit first.</p>
         <p>Then, to modify or delete a venue, modify the contents and click "update event". Event ID is not modifiable.</p>
         <p>To modify or delete an event in a venue, click the buttons beside the event you want to modify or delete.</p>
@@ -313,9 +323,9 @@ function AdminPage({ user }) {
     <div className='main-container'>
       <h1>Admin Page</h1>
       <p>Logged in as: {user.username}</p>
-      <button onClick={() => navigate('/admin-page')}>Admin Home</button>
-      <button onClick={() => navigate('/admin-page/modify-user')}>Modify User</button>
-      <button onClick={() => navigate('/admin-page/modify-event')}>Modify Event</button>
+      <button className='btn btn-light' onClick={() => navigate('/admin-page')}>Admin Home</button>
+      <button className='btn btn-light' onClick={() => navigate('/admin-page/modify-user')}>Modify User</button>
+      <button className='btn btn-light' onClick={() => navigate('/admin-page/modify-event')}>Modify Event</button>
 
       <Routes>
         <Route index element={<div><p>Welcome to the Admin Page. Select to modify user or modify events.</p></div>} />

@@ -26,7 +26,7 @@
       },
       {
         "ID": 155636,
-         "time":[
+        "time":[
           "08/12/2023 16:00",
           "09/12/2023 10:00",
           "10/12/2023 10:00"
@@ -37,7 +37,7 @@
       },
       {
         "ID": 155640,
-         "time":[
+        "time":[
           "29/12/2023 10:00",
           "31/12/2023 10:00"
         ],
@@ -47,10 +47,10 @@
       },
       {
         "ID": 155637,
-         "time":[
-          "14/12/2023 14:00",
-          "15/12/2023 10:00",
-          "18/12/2023 10:00"
+        "time":[
+           "14/12/2023 14:00",
+           "15/12/2023 10:00",
+           "18/12/2023 10:00"
         ],
         "description": "Imagery by Miniature Cameras 2023 (Photo Exhibition)",
         "presenter": "The Hong Kong Miniature Cameras Photography Society",
@@ -67,106 +67,984 @@
     }
   },
   {
-  "ID": 1,
+    "ID": 1,
     "events": [
       {
         "ID": 155734,
-         "time":[
-          "16/12/2023 10:00-19:30",
-          "17/12/2023 9:30-19:30",
-          "18/12/2023 9:30-19:30",
-          "19/12/2023 9:30-19:30",
-          "20/12/2023 9:30-19:30",
-          "21/12/2023 9:30-17:00"
-        ],
-        "description": "Art Exhibition",
-        "presenter": "Thousand Wisdom Limited - Bauhinia Magazine",
-        "price": 0
-      },
+        "time":[
+             "16/12/2023 10:00-19:30",
+             "17/12/2023 9:30-19:30",
+             "18/12/2023 9:30-19:30",
+             "19/12/2023 9:30-19:30",
+             "20/12/2023 9:30-19:30",
+             "21/12/2023 9:30-17:00"
+          ],
+          "description": "Art Exhibition",
+          "presenter": "Thousand Wisdom Limited - Bauhinia Magazine",
+          "price": 0
+        },
+        {
+          "ID": 155736,
+          "time":[
+             "23/12/2023 15:00-19:00",
+             "24/12/2023 10:00-19:00",
+             "25/12/2023 10:00-19:00",
+             "26/12/2023 10:00-17:00"
+          ],
+          "description": "Painting and Calligraphy Exhibition",
+          "presenter": "Organised by 鳴皋雅集",
+          "price": 0
+        },
+        {
+          "ID": 155737,
+          "time":[
+             "29/12/2023 11:00-20:00",
+             "30/12/2023",
+             "31/12/2023",
+             "1/1/2024 09:00-20:00",
+             "2/1/2024 09:00-19:00"
+          ],
+          "description": "The 12th Anniversary Art of Monochrome Photo Exhibition",
+          "presenter": "The Hong Kong 35mm. Photography Society Limited",
+          "price": 0
+        },
+        {
+          "ID": 155735,
+          "time":[
+             "22/12/2023 11:00-20:00",
+             "23/12/2023 09:00-20:00",
+             "25/12/2023 09:00-20:00",
+             "26/12/2023 09:00-20:00",
+             "27/12/2023 09:00-20:00",
+             "28/12/2023 09:00-20:00",
+             "29/12/2023 09:00-20:00",
+             "30/12/2023 09:00-20:00",
+             "31/12/2023 09:00-20:00",
+             "1/1/2024 09:00-20:00",
+             "2/1/2024 09:00-20:00",
+             "3/1/2024 09:00-20:00",
+             "4/1/2024 09:00-20:00",
+             "5/1/2024 09:00-20:00",
+             "6/1/2024 09:00-20:00",
+             "7/1/2024 09:00-20:00",
+             "8/1/2024 09:00-20:00",
+             "9/1/2024 09:00-16:00"
+          ],
+          "description": "Yesterday's Vacation in HK",
+          "presenter": "Government Records Service",
+          "price": 0
+        }
+      ],
+      "info": {
+        "locationName": "Hong Kong Central Library (G/F Exhibition Gallery)",
+        "latitude": 22.280146,
+        "longitude": 114.189536,
+        "eventNum": 4,
+        "rate": 0,
+        "rateNum": 0
+      }
+    },
+    {
+      "ID": 2,
+      "events": [
+        {
+          "ID": 1550301,
+          "time":[
+             "10/12/2023 20:15",
+             "11/12/2023 20:15",
+             "31/12/2023 20:00",
+             "01/1/2024 20:15",
+             "03/1/2024 20:15",
+             "04/1/2023 20:15"
+          ],
+          "description": "FWD Insurance 10th Anniversary Presents: Jacky Cheung 60+ Concert Tour Hong Kong (Additional Performances)_Price1",
+          "presenter": "Harbour Well Development Limited",
+          "price": 580
+        },
+        {
+        "ID": 1550302,
+          "time":[
+             "10/12/2023 20:15",
+             "11/12/2023 20:15",
+             "31/12/2023 20:00",
+             "01/1/2024 20:15",
+             "03/1/2024 20:15",
+             "04/1/2023 20:15"
+          ],
+          "description": "FWD Insurance 10th Anniversary Presents: Jacky Cheung 60+ Concert Tour Hong Kong (Additional Performances)_Price2",
+          "presenter": "Harbour Well Development Limited",
+          "price": 980
+        },
+        {
+        "ID": 1550303,
+          "time":[
+             "10/12/2023 20:15",
+             "31/12/2023 20:00",
+             "11/12/2023 20:15",
+             "01/1/2024 20:15",
+             "03/1/2024 20:15",
+             "04/1/2023 20:15"
+          ],
+          "description": "FWD Insurance 10th Anniversary Presents: Jacky Cheung 60+ Concert Tour Hong Kong (Additional Performances)_Price3",
+          "presenter": "Harbour Well Development Limited",
+          "price": 1280
+        },
+        {
+        "ID": 1557251,
+          "time":[
+           "06/1/2024 20:15",
+           "07/1/2023 20:15",
+           "09/1/2024 20:15",
+           "10/1/2023 20:15", 
+           "12/1/2024 20:15",
+           "13/1/2023 20:15"
+          ],
+          "description": "FWD Insurance 10th Anniversary Presents : Jacky Cheung 60+ Concert Tour Hong Kong (Additional Performances)_Price1",
+          "presenter": "Harbour Well Development Limited",
+          "price": 580
+        },
+        {
+        "ID": 1557252,
+          "time":[
+           "06/1/2024 20:15",
+           "07/1/2023 20:15",
+           "09/1/2024 20:15",
+           "10/1/2023 20:15", 
+           "12/1/2024 20:15",
+           "13/1/2023 20:15"
+          ],
+          "description": "FWD Insurance 10th Anniversary Presents: Jacky Cheung 60+ Concert Tour Hong Kong (Additional Performances)_Price2",
+          "presenter": "Harbour Well Development Limited",
+          "price": 980
+        },
+        {
+        "ID": 1557253,
+          "time":[
+           "06/1/2024 20:15",
+           "07/1/2023 20:15",
+           "09/1/2024 20:15",
+           "10/1/2023 20:15", 
+           "12/1/2024 20:15",
+           "13/1/2023 20:15"
+          ],
+          "description": "FWD Insurance 10th Anniversary Presents: Jacky Cheung 60+ Concert Tour Hong Kong (Additional Performances)_Price3",
+          "presenter": "Harbour Well Development Limited",
+          "price": 1280
+        },
       {
-        "ID": 155736,
-         "time":[
-          "23/12/2023 15:00-19:00",
-          "24/12/2023 10:00-19:00",
-          "25/12/2023 10:00-19:00",
-          "26/12/2023 10:00-17:00"
-        ],
-        "description": "Painting and Calligraphy Exhibition",
-        "presenter": "Organised by 鳴皋雅集",
-        "price": 0
-      },
+      "ID": 1557591,
+          "time":[
+           "21/1/2024 20:15",
+           "23/1/2023 20:15",
+           "25/1/2024 20:15",
+           "26/1/2023 20:15", 
+           "27/1/2024 20:15",
+           "28/1/2023 20:15",
+           "29/1/2023 20:15"
+          ],
+          "description": "Manulife宏利呈獻 TWINS SPIRIT SINCE 2001 LIVE IN HONG KONG_Price1",
+          "presenter": "Emperor Entertainment (Hong Kong) Limited",
+          "price": 480
+        },
+    {
+      "ID": 1557592,
+          "time":[
+           "21/1/2024 20:15",
+           "23/1/2023 20:15",
+           "25/1/2024 20:15",
+           "26/1/2023 20:15", 
+           "27/1/2024 20:15",
+           "28/1/2023 20:15",
+           "29/1/2023 20:15"
+          ],
+          "description": "Manulife宏利呈獻 TWINS SPIRIT SINCE 2001 LIVE IN HONG KONG_Price2",
+          "presenter": "Emperor Entertainment (Hong Kong) Limited",
+          "price": 680
+        },
       {
-        "ID": 155737,
-         "time":[
-          "29/12/2023 11:00-20:00",
+      "ID": 1557592,
+          "time":[
+           "21/1/2024 20:15",
+           "23/1/2023 20:15",
+           "25/1/2024 20:15",
+           "26/1/2023 20:15", 
+           "27/1/2024 20:15",
+           "28/1/2023 20:15",
+           "29/1/2023 20:15"
+          ],
+          "description": "Manulife宏利呈獻 TWINS SPIRIT SINCE 2001 LIVE IN HONG KONG_Price3",
+          "presenter": "Emperor Entertainment (Hong Kong) Limited",
+          "price": 880
+        },
+    {
+      "ID": 1557594,
+          "time":[
+           "21/1/2024 20:15",
+           "23/1/2023 20:15",
+           "25/1/2024 20:15",
+           "26/1/2023 20:15", 
+           "27/1/2024 20:15",
+           "28/1/2023 20:15",
+           "29/1/2023 20:15"
+          ],
+          "description": "Manulife宏利呈獻 TWINS SPIRIT SINCE 2001 LIVE IN HONG KONG_Price4",
+          "presenter": "Emperor Entertainment (Hong Kong) Limited",
+          "price": 1080
+        }
+      ],
+      "info": {
+        "locationName": "Hong Kong Coliseum (Arena)",
+        "latitude": 22.18533,
+        "longitude": 114.105523,
+        "eventNum": 10,
+        "rate": 0,
+        "rateNum": 0
+      }
+  },
+  {
+    "ID": 3,
+    "events": [
+      {
+        "ID": 156266,
+        "time":[
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
           "30/12/2023",
-          "31/12/2023",
-          "1/1/2024 09:00-20:00",
-          "2/1/2024 09:00-19:00"
+          "31/12/2023"
         ],
-        "description": "The 12th Anniversary Art of Monochrome Photo Exhibition",
-        "presenter": "The Hong Kong 35mm. Photography Society Limited",
+        "description": "An Alluring Inheritance of Beauty: Chinese Cheongsam ",
+        "presenter": "In association with Hong Kong Design Institute",
         "price": 0
       },
       {
-        "ID": 155735,
-         "time":[
-           "22/12/2023 11:00-20:00",
-           "23/12/2023 09:00-20:00",
-           "24/12/2023 09:00-20:00",
-           "25/12/2023 09:00-20:00",
-           "26/12/2023 09:00-20:00",
-           "27/12/2023 09:00-20:00",
-           "28/12/2023 09:00-20:00",
-           "29/12/2023 09:00-20:00",
-           "30/12/2023 09:00-20:00",
-           "31/12/2023 09:00-20:00",
-           "1/1/2024 09:00-20:00",
-           "2/1/2024 09:00-20:00",
-           "3/1/2024 09:00-20:00",
-           "4/1/2024 09:00-20:00",
-           "5/1/2024 09:00-20:00",
-           "6/1/2024 09:00-20:00",
-           "7/1/2024 09:00-20:00",
-           "8/1/2024 09:00-20:00",
-           "9/1/2024 09:00-16:00"
+        "ID": 156267,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
         ],
-        "description": "Yesterday's Vacation in HK",
-        "presenter": "Government Records Service",
+        "description": "Book Display: Introduction to Management",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156268,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Children's Book Display: Polar Ecosystem",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156272,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023"
+        ],
+        "description": "Roving Book Exhibition of “Quality Reading Culture",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156265,
+        "time":[
+          "2/12/2023 14:00-15:00",
+          "9/12/2023 14:00-15:00",
+          "16/12/2023 14:00-15:00",
+          "23/12/2023 14:00-15:00",
+          "30/12/2023 14:00-15:00"
+        ],
+        "description": "Storytelling for Children",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
         "price": 0
       }
     ],
     "info": {
-      "locationName": "Hong Kong Central Library (G/F Exhibition Gallery)",
-      "latitude": 0,
-      "longitude": 0,
+      "locationName": "Tiu Keng Leng Public Library",
+      "latitude": 22.306561,
+      "longitude": 114.254702,
+      "eventNum": 6,
+      "rate": 0,
+      "rateNum": 0
+    }
+  },
+  {
+    "ID": 4,
+    "events": [
+      {
+        "ID": 156144,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023"
+        ],
+        "description": "Book Display: Healthy Lifestyle for the Elderly",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156145,
+        "time":[
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Children's Book Display: Kingdom of Plants",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156148,
+        "time":[
+          "22/12/2023 17:00"
+        ],
+        "description": "Introduction to Library Catalogue / Internet & Electronic Resources / Multimedia Information System (Junior)",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156146,
+        "time":[
+          "2/12/2023 14:00-15:00",
+          "9/12/2023 14:00-15:00",
+          "16/12/2023 14:00-15:00",
+          "23/12/2023 14:00-15:00",
+          "30/12/2023 14:00-15:00"
+        ],
+        "description": "Storytelling for Children",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      }
+    ],
+    "info": {
+      "locationName": "Lung Hing Public Library",
+      "latitude": 22.340681,
+      "longitude":  114.192920,
+      "eventNum": 6,
+      "rate": 0,
+      "rateNum": 0
+    }
+  },
+  {
+    "ID": 5,
+    "events": [
+      {
+        "ID": 156243,
+        "time":[
+          "23/12/2023 15:00-16:00"
+        ],
+        "description": "Introduction to Library Catalogue/ Internet & Electronic Resources (Adult)",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156240,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Children's Book Display: Merry Christmas",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156239,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Book Display: Handmade Jewellery",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156146,
+        "time":[
+          "2/12/2023 14:00-15:00",
+          "9/12/2023 14:00-15:00",
+          "16/12/2023 14:00-15:00",
+          "23/12/2023 14:00-15:00",
+          "30/12/2023 14:00-15:00"
+        ],
+        "description": "Storytelling for Children",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      }
+    ],
+    "info": {
+      "locationName": "Fanling South Public Library",
+      "latitude": 22.487167,
+      "longitude": 114.143186,
       "eventNum": 4,
       "rate": 0,
       "rateNum": 0
     }
   },
   {
-    "ID": 2,
+    "ID": 6,
     "events": [
       {
-        "ID": 6,
+        "ID": 156281,
         "time":[
-          "25/12/2023 14:00",
-          "26/12/2023 10:00",
-          "28/12/2023 10:00"
+          "19/12/2023 16:30-17:30"
         ],
-        "description": "This is event 2-0.",
-        "presenter": "Niu mo de zang li si yi",
-        "price": 150
+        "description": "Monthly Meeting of Joyful Reading” of Reading Programme for Children and Youth: The Nature (Senior Sec.)",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156278,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Book Display: Healthy Diet",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156279,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Children's Book Display: Knowledge about Insects",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156283,
+        "time":[
+          "20/12/2023 10:00",
+          "27/12/2023 16:00"
+        ],
+        "description": "Introduction to Library Catalogue/ Internet & Electronic Resource (Junior)",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156280,
+        "time":[
+          "2/12/2023 14:00-15:00",
+          "9/12/2023 14:00-15:00",
+          "16/12/2023 14:00-15:00",
+          "23/12/2023 14:00-15:00",
+          "30/12/2023 14:00-15:00"
+        ],
+        "description": "Storytelling for Children (Cantonese)",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
       }
     ],
     "info": {
-      "locationName": "City Hall Public Library",
-      "latitude": 24.2222222,
-      "longitude": 116.4444444,
-      "eventNum": 1,
-      "rate": 4.8,
-      "rateNum": 20
+      "locationName": "Yuen Chau Kok Public Library",
+      "latitude": 22.379407, 
+      "longitude": 114.204376,
+      "eventNum": 4,
+      "rate": 0,
+      "rateNum": 0
+    }
+  },
+    {
+    "ID": 7,
+    "events": [
+      {
+        "ID": 156106,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Book Display: Happy at Work",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156107,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023",
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Children's Book Display- Bedtime Stories",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156110,
+        "time":[
+          "19/12/2023 17:00-18:00"
+        ],
+        "description": "Introduction to Library Catalogue / Internet & Electronic Resources (Junior)",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156108,
+        "time":[
+          "3/12/2023 11:00-12:00",
+          "10/12/2023 11:00-12:00",
+          "17/12/2023 11:00-12:00",
+          "24/12/2023 11:00-12:00",
+          "31/12/2023 11:00-12:00"
+        ],
+        "description": "Storytelling for Children",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      }
+    ],
+    "info": {
+      "locationName": "Shek Kip Mei Public Library",
+      "latitude": 22.333006, 
+      "longitude": 114.167216,
+      "eventNum": 4,
+      "rate": 0,
+      "rateNum": 0
+    }
+  },
+  {
+    "ID": 8,
+    "events": [
+      {
+        "ID": 156386,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023"
+        ],
+        "description": "Book Display: The Wind, The Clouds, The Weather",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156387,
+        "time":[
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Children's Book Display: Ocean Wonders",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156388,
+        "time":[
+          "14/12/2023 15:00-15:30"
+        ],
+        "description": "Introduction to Library Catalogue / Internet & Electronic Resources (Adult)",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 156108,
+        "time":[
+          "14/12/2023 16:00-16:30"
+        ],
+        "description": "Introduction to Library Catalogue / Internet & Electronic Resources (Junior)",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      }
+    ],
+    "info": {
+      "locationName": "Peng Chau Public Library",
+      "latitude": 22.284943, 
+      "longitude": 114.037729,
+      "eventNum": 4,
+      "rate": 0,
+      "rateNum": 0
+    }
+  },
+  {
+    "ID": 9,
+    "events": [
+      {
+        "ID": 155956,
+        "time":[
+          "1/12/2023",
+          "2/12/2023",
+          "3/12/2023",
+          "4/12/2023",
+          "5/12/2023",
+          "6/12/2023",
+          "7/12/2023",
+          "8/12/2023",
+          "9/12/2023",
+          "10/12/2023",
+          "11/12/2023",
+          "12/12/2023",
+          "13/12/2023",
+          "14/12/2023",
+          "15/12/2023"
+        ],
+        "description": "Book Display: Green Living",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 155957,
+        "time":[
+          "16/12/2023",
+          "17/12/2023",
+          "18/12/2023",
+          "19/12/2023",
+          "20/12/2023",
+          "21/12/2023",
+          "22/12/2023",
+          "23/12/2023",
+          "24/12/2023",
+          "25/12/2023",
+          "26/12/2023",
+          "27/12/2023",
+          "28/12/2023",
+          "29/12/2023",
+          "30/12/2023",
+          "31/12/2023"
+        ],
+        "description": "Children's Book Display: The World of Science",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      },
+      {
+        "ID": 155958,
+        "time":[
+          "2/12/2023 15:00-16:00",
+          "9/12/2023 15:00-16:00",
+          "16/12/2023 15:00-16:00",
+          "23/12/2023 15:00-16:00",
+          "30/12/2023 15:00-16:00"
+        ],
+        "description": "Storytelling for Children (Cantonese)",
+        "presenter": "Hong Kong Public Libraries (LCSD)",
+        "price": 0
+      }
+    ],
+    "info": {
+      "locationName": "Pok Fu Lam Public Library",
+      "latitude": 22.250538, 
+      "longitude": 114.136644,
+      "eventNum": 4,
+      "rate": 0,
+      "rateNum": 0
     }
   }
 ]
