@@ -79,7 +79,7 @@ db.once('open', async function () {
     const User = mongoose.model("user", userSchema, "user");
 
     // create user
-    app.post('/users', async (req, res) => {
+    app.post('/admin/users', async (req, res) => {
         try {
             const user = new User(req.body);
             await user.save();
@@ -90,7 +90,7 @@ db.once('open', async function () {
     }); // OK
 
     // read user
-    app.get('/users', async (req, res) => {
+    app.get('/admin/users', async (req, res) => {
         
         try {
             const users = await User.find({}, '-_id -__v');
@@ -102,7 +102,7 @@ db.once('open', async function () {
     }); // OK
 
     // update user
-    app.patch('/users/:username', async (req, res) => {
+    app.patch('/admin/users/:username', async (req, res) => {
         try {
             const user = await User.findOneAndUpdate({ username: req.params.username }, req.body, { new: true, runValidators: true });
             if (!user) {
@@ -115,7 +115,7 @@ db.once('open', async function () {
     }); // OK No response
 
     // delete user
-    app.delete('/users/:username', async (req, res) => {
+    app.delete('/admin/users/:username', async (req, res) => {
         try {
             const user = await User.findOneAndDelete({ username: req.params.username });
             if (!user) {
@@ -129,7 +129,7 @@ db.once('open', async function () {
 
     // EVENT
     // create event
-    app.post('/venues/:venueId/events', async (req, res) => {
+    app.post('/admin/venues/:venueId/events', async (req, res) => {
         try {
             const venue = await Venue.findOne({ ID: req.params.venueId });
             if (!venue) {
@@ -169,7 +169,7 @@ db.once('open', async function () {
     
     // read event from a venue
     // check if reading single event is necessary
-    app.get('/venues/:venueId/events', async (req, res) => {
+    app.get('/admin/venues/:venueId/events', async (req, res) => {
         try {
             let venues = await Venue.find({});
         
@@ -190,7 +190,7 @@ db.once('open', async function () {
     });
 
     // read events from all venues
-    app.get('/venues', async (req, res) => {
+    app.get('/admin/venues', async (req, res) => {
         try {
             let venues = await Venue.find({});
         
@@ -206,7 +206,7 @@ db.once('open', async function () {
     });
 
     // update event
-    app.patch('/venues/:venueId/events/:eventId', async (req, res) => {
+    app.patch('/admin/venues/:venueId/events/:eventId', async (req, res) => {
         try {
             const venue = await Venue.findOne({ ID: req.params.venueId });
             if (!venue) {
@@ -228,7 +228,7 @@ db.once('open', async function () {
     
 
     // update venue
-    app.patch('/venues/:venueId', async (req, res) => {
+    app.patch('/admin/venues/:venueId', async (req, res) => {
         try {
             const venueInfo = req.body;
             const toBeUpdated = {info: venueInfo}
@@ -246,7 +246,7 @@ db.once('open', async function () {
     
     
     // delete event
-    app.delete('/venues/:venueId/events/:eventId', async (req, res) => {
+    app.delete('/admin/venues/:venueId/events/:eventId', async (req, res) => {
         try {
             const venue = await Venue.findOne({ ID: req.params.venueId });
 
@@ -276,7 +276,7 @@ db.once('open', async function () {
 
     // WARNING: NOT RECOMMENDED TO USER
     // create / delete venue
-    app.post('/venues', async (req, res) => {
+    app.post('/admin/venues', async (req, res) => {
         try {
             const maxVenue = await Venue.findOne().sort({ ID: -1 });
             const newVenueId = maxVenue ? maxVenue.ID + 1 : 1;
@@ -311,7 +311,7 @@ db.once('open', async function () {
         }
     }); // OK
 
-    app.delete('/venues/:venueId', async (req, res) => {
+    app.delete('/admin/venues/:venueId', async (req, res) => {
         try {
             const venue = await Venue.findOneAndDelete({ ID: req.params.venueId });
             if (!venue) {
@@ -326,7 +326,7 @@ db.once('open', async function () {
     
 
     // handle ALL requests
-    app.all('/*', (req, res) => {
+    app.all('/admin/*', (req, res) => {
         // send this to client
         res.send('Hello! Please check your request.');
     });
