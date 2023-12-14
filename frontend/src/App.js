@@ -32,6 +32,7 @@ function App() {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setUser(user);
+      console.log('User logged in:', user);
     }
   }, [])
 
