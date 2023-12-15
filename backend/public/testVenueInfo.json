@@ -67,8 +67,8 @@
     },
     "comments":[
       {
-        "text": "This is a comment",
-        "username": "test",
+        "text": "This is the first comment",
+        "username": "admin",
         "ID":0
       }
     ]
@@ -151,11 +151,6 @@
         "rateNum": 0
       },
       "comments":[
-        {
-          "text": "This is a comment",
-          "username": "test",
-          "ID":1
-        }
       ]
     },
     {
@@ -276,7 +271,7 @@
           "price": 680
         },
       {
-      "ID": 1557592,
+      "ID": 1557593,
           "time":[
            "21/1/2024 20:15",
            "23/1/2023 20:15",
@@ -315,11 +310,6 @@
         "rateNum": 0
       },
       "comments":[
-        {
-          "text": "This is a comment",
-          "username": "test",
-          "ID":2
-        }
       ]
   },
   {
@@ -486,11 +476,6 @@
       "rateNum": 0
     },
     "comments":[
-      {
-        "text": "This is a comment",
-        "username": "test",
-        "ID":3
-      }
     ]
   },
   {
@@ -575,11 +560,6 @@
       "rateNum": 0
     },
     "comments":[
-      {
-        "text": "This is a comment",
-        "username": "test",
-        "ID":4
-      }
     ]
   },
   {
@@ -682,11 +662,6 @@
       "rateNum": 0
     },
     "comments":[
-      {
-        "text": "This is a comment",
-        "username": "test",
-        "ID":5
-      }
     ]
   },
   {
@@ -812,11 +787,6 @@
       "rateNum": 0
     },
     "comments":[
-      {
-        "text": "This is a comment",
-        "username": "test",
-        "ID":6
-      }
     ]
   },
     {
@@ -932,11 +902,6 @@
       "rateNum": 0
     },
     "comments":[
-      {
-        "text": "This is a comment",
-        "username": "test",
-        "ID":7
-      }
     ]
   },
   {
@@ -1008,11 +973,6 @@
       "rateNum": 0
     },
     "comments":[
-      {
-        "text": "This is a comment",
-        "username": "test",
-        "ID":8
-      }
     ]
   },
   {
@@ -1088,11 +1048,6 @@
       "rateNum": 0
     },
     "comments":[
-      {
-        "text": "This is a comment",
-        "username": "test",
-        "ID":9
-      }
     ]
   }
 ]
