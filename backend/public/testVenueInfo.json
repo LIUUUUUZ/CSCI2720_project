@@ -64,7 +64,14 @@
       "eventNum": 5,
       "rate": 0,
       "rateNum": 0
-    }
+    },
+    "comments":[
+      {
+        "text": "This is a comment",
+        "username": "test",
+        "ID":0
+      }
+    ]
   },
   {
     "ID": 1,
@@ -142,7 +149,14 @@
         "eventNum": 4,
         "rate": 0,
         "rateNum": 0
-      }
+      },
+      "comments":[
+        {
+          "text": "This is a comment",
+          "username": "test",
+          "ID":1
+        }
+      ]
     },
     {
       "ID": 2,
@@ -299,7 +313,14 @@
         "eventNum": 10,
         "rate": 0,
         "rateNum": 0
-      }
+      },
+      "comments":[
+        {
+          "text": "This is a comment",
+          "username": "test",
+          "ID":2
+        }
+      ]
   },
   {
     "ID": 3,
@@ -463,7 +484,14 @@
       "eventNum": 6,
       "rate": 0,
       "rateNum": 0
-    }
+    },
+    "comments":[
+      {
+        "text": "This is a comment",
+        "username": "test",
+        "ID":3
+      }
+    ]
   },
   {
     "ID": 4,
@@ -545,7 +573,14 @@
       "eventNum": 6,
       "rate": 0,
       "rateNum": 0
-    }
+    },
+    "comments":[
+      {
+        "text": "This is a comment",
+        "username": "test",
+        "ID":4
+      }
+    ]
   },
   {
     "ID": 5,
@@ -636,19 +671,6 @@
         "description": "Book Display: Handmade Jewellery",
         "presenter": "Hong Kong Public Libraries (LCSD)",
         "price": 0
-      },
-      {
-        "ID": 156146,
-        "time":[
-          "2/12/2023 14:00-15:00",
-          "9/12/2023 14:00-15:00",
-          "16/12/2023 14:00-15:00",
-          "23/12/2023 14:00-15:00",
-          "30/12/2023 14:00-15:00"
-        ],
-        "description": "Storytelling for Children",
-        "presenter": "Hong Kong Public Libraries (LCSD)",
-        "price": 0
       }
     ],
     "info": {
@@ -658,7 +680,14 @@
       "eventNum": 4,
       "rate": 0,
       "rateNum": 0
-    }
+    },
+    "comments":[
+      {
+        "text": "This is a comment",
+        "username": "test",
+        "ID":5
+      }
+    ]
   },
   {
     "ID": 6,
@@ -781,7 +810,14 @@
       "eventNum": 4,
       "rate": 0,
       "rateNum": 0
-    }
+    },
+    "comments":[
+      {
+        "text": "This is a comment",
+        "username": "test",
+        "ID":6
+      }
+    ]
   },
     {
     "ID": 7,
@@ -894,7 +930,14 @@
       "eventNum": 4,
       "rate": 0,
       "rateNum": 0
-    }
+    },
+    "comments":[
+      {
+        "text": "This is a comment",
+        "username": "test",
+        "ID":7
+      }
+    ]
   },
   {
     "ID": 8,
@@ -954,15 +997,6 @@
         "description": "Introduction to Library Catalogue / Internet & Electronic Resources (Adult)",
         "presenter": "Hong Kong Public Libraries (LCSD)",
         "price": 0
-      },
-      {
-        "ID": 156108,
-        "time":[
-          "14/12/2023 16:00-16:30"
-        ],
-        "description": "Introduction to Library Catalogue / Internet & Electronic Resources (Junior)",
-        "presenter": "Hong Kong Public Libraries (LCSD)",
-        "price": 0
       }
     ],
     "info": {
@@ -972,7 +1006,14 @@
       "eventNum": 4,
       "rate": 0,
       "rateNum": 0
-    }
+    },
+    "comments":[
+      {
+        "text": "This is a comment",
+        "username": "test",
+        "ID":8
+      }
+    ]
   },
   {
     "ID": 9,
@@ -1045,6 +1086,13 @@
       "eventNum": 4,
       "rate": 0,
       "rateNum": 0
-    }
+    },
+    "comments":[
+      {
+        "text": "This is a comment",
+        "username": "test",
+        "ID":9
+      }
+    ]
   }
 ]

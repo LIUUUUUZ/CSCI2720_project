@@ -6,7 +6,7 @@ const venueSchema = mongoose.Schema(
         events: [
             {
                 ID: {type: Number, unique: true},
-                time: String,
+                time: [],
                 description: String,
                 presenter: String,
                 price: Number
@@ -23,7 +23,7 @@ const venueSchema = mongoose.Schema(
         comments:[{
             text: String,
             username: String,
-            ID: {type: Number, unique: true},
+            ID: {type: Number},
         }]
     },
 )
