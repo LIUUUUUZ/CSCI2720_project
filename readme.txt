@@ -1,4 +1,4 @@
-Starting server: 1. cd to the backend folder; 2. type "npx nodemon server.js"
+Starting server: 1. cd to the backend folder; 2. type "node server.js"
 Starting frontend: 1. cd to the frontend folder; 2. type "npm start" in the command.
 project URL: http://localhost:3000/
 Frontend is on port 3000 and backend is on port 5555.
