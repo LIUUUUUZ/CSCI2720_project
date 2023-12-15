@@ -21,8 +21,6 @@ function LocationPage({user, setUser}) {
   const navigate = useNavigate()
 
   function noMatchedLocationID() {
-    /* To be finished*/
-    console.log(1)
     navigate("/")
   };
 

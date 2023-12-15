@@ -163,6 +163,19 @@ h1 {
   display: inline-block;
 }
 
+.home-map-location-info-container {
+  width: 400px;
+  height: 150px;
+  position: absolute;
+  background-color: white;
+  border-radius: 10px;
+  left: 3vw;
+  bottom: 3vh;
+  z-index: 90;
+  padding: 10px 15px;
+  box-shadow: 10px 10px 10px -10px var(--description-grey);
+}
+
 .location-info-container {
   width: 60vw;
   position: relative;

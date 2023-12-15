@@ -20,7 +20,8 @@ const colorSet = {
   CUHKPurple: "#740f6B",
   CUHKYellow: "#E6B001",
   hoverPurple: "#5a0c53",
-  activePurple: "#44093e"
+  activePurple: "#44093e",
+  iconGrey: "#888888"
 }
 
 function App() {
@@ -114,6 +115,7 @@ const Home = ({setLocations}) => {
 
 // Location list component in Home page
 class LocationList extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -122,12 +124,27 @@ class LocationList extends React.Component {
       isFetching: true,
       sortingStatus: false,
       searchText: "",
+      shownInfoItem: {}
     };
   }
 
   async componentDidMount() {
-    // Get info
+    const that = this
     try {
+      function checkAdvancedMarkers() {
+        const advancedMarkers = document.querySelectorAll("gmp-advanced-marker");
+        if (advancedMarkers.length > 0) {
+          for (const advancedMarker of advancedMarkers) {
+            customElements.whenDefined(advancedMarker.localName).then(async () => {
+              advancedMarker.addEventListener("gmp-click", async () => {
+                that.setState({shownInfoItem: that.state.originalLocationList[advancedMarker.id.substring(7)]})
+              });
+            });
+          }
+          clearInterval(intervalId);
+        }
+      }
+
       const response = await axios.get(`http://${SERVER_URL}/location-list`);
       const data = response.data;
       this.setState({
@@ -136,7 +153,8 @@ class LocationList extends React.Component {
         isFetching: false
       });
       this.props.setLocations(data)
-      console.log(this.state.shownLocationList)
+      const intervalId = setInterval(checkAdvancedMarkers, 200);
+      
     } catch (error) {
       console.log('Error fetching location list:', error);
       this.setState({ isFetching: false });
@@ -183,7 +201,7 @@ class LocationList extends React.Component {
   }
 
   render() {
-    const { shownLocationList, isFetching } = this.state;
+    const { shownLocationList, originalLocationList, isFetching } = this.state;
 
     if (isFetching) {
       return <div>Getting data...</div>;
@@ -192,11 +210,21 @@ class LocationList extends React.Component {
         <div>
           <div className="location-map-container-start" id="home-map-container">
             <gmp-map center="22.378021,114.163526" zoom="11" map-id="DEMO_MAP_ID">
-              {shownLocationList.map(location => (
-                <gmp-advanced-marker key={location.ID} position={`${location.info.latitude},${location.info.longitude}`} title="Venue location">
+              {originalLocationList.map(location => (
+                <gmp-advanced-marker
+                id={`marker-${location.ID}`}
+                key={location.ID}
+                position={`${location.info.latitude},${location.info.longitude}`}
+                title={location.info.locationName}>
                 </gmp-advanced-marker>
               ))}
             </gmp-map>
+            {this.state.shownInfoItem.info !== undefined ? <div className='home-map-location-info-container'>
+              <div style={{width: '370px', fontWeight: 'bold'}}>{this.state.shownInfoItem.info.locationName}</div>
+              <div style={{fontSize: '14px', marginTop: '40px'}}><span style={{fontWeight: 'bold'}}>Longitude:</span> {this.state.shownInfoItem.info.longitude}</div>
+              <div style={{fontSize: '14px'}}><span style={{fontWeight: 'bold'}}>Latitude:</span> {this.state.shownInfoItem.info.latitude}</div>
+              <Link to={`/location-page/${this.state.shownInfoItem.ID}`} className="btn btn-outline-success" style={{position: 'absolute', right: '20px', bottom: '15px'}}>View</Link>
+            </div> : undefined}
           </div>
           <br />
 
@@ -219,7 +247,7 @@ class LocationList extends React.Component {
           </ul>
 
           {shownLocationList.map(location => (
-            <ul key={location.ID} className="list-group list-group-horizontal-lg margin-bot">
+            <ul id={`marker-${location.ID}`} key={location.ID} className="list-group list-group-horizontal-lg margin-bot">
               <Link to={`/location-page/${location.ID}`} className="list-group-item list-group-item-action flex-fill">{location.info.locationName}</Link>
               <Link to={`/location-page/${location.ID}`} className="list-group-item list-group-item-action flex-fill">{location.info.eventNum}</Link>
             </ul>
@@ -234,8 +262,6 @@ class LocationList extends React.Component {
 
 // 'My favorites' page
 const Favorites = ({user, locations}) => {
-  const navigate = useNavigate()
-
   return (
     <div className='main-container'>
       <h1 style={{marginBottom: '3vh'}}>My favorite</h1>
