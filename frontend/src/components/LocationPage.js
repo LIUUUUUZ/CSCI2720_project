@@ -262,7 +262,7 @@ function EventContainer({location}) {
             <div className='event-item-presenter'>{event.presenter}</div>
             <div className='event-item-price'><span style={{fontWeight: 'bold'}}>{event.price}</span> HKD</div>
             <div className="event-item-timeslots-container">
-              <div className="event-item-timeslots-number">{event.time.length}</div>
+              <div className="event-item-timeslots-number">{Array.isArray(event.time) ? event.time.length : 1}</div>
               <div className="event-item-timeslots-text">Timeslots</div>
             </div>
             <div className='event-item-description'>{event.description.length > 110 ? event.description.substring(0, 108) + '...' : event.description}</div>
