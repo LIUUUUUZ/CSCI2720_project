@@ -124,7 +124,8 @@ class LocationList extends React.Component {
       isFetching: true,
       sortingStatus: false,
       searchText: "",
-      shownInfoItem: {}
+      shownInfoItem: {},
+      latestUpdateTime: ""
     };
   }
 
@@ -144,6 +145,9 @@ class LocationList extends React.Component {
           clearInterval(intervalId);
         }
       }
+      const res = await axios.get(`http://${SERVER_URL}/time`);
+      const time = res.data
+      this.setState({latestUpdateTime: time})
 
       const response = await axios.get(`http://${SERVER_URL}/location-list`);
       const data = response.data;
@@ -237,7 +241,7 @@ class LocationList extends React.Component {
             <button className="list-group-item list-group-item-action flex-fill"
             disabled
             style={{backgroundColor: colorSet.CUHKPurple, color: "white"}}>
-              Venue
+              Venue &nbsp;&nbsp; (Last updated: {this.state.latestUpdateTime})
             </button>
             <button className="list-group-item list-group-item-action flex-fill list-title"
             style={{backgroundColor: colorSet.CUHKPurple, color: "white"}}

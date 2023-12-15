@@ -69,6 +69,13 @@ db.once('open', () => {
       });
     });
 
+    //send time to the main page
+    app.get('/time', (req, res) => {
+      const date = new Date();
+      const time = date.toLocaleString();
+      res.json(time);
+    });
+
     //进入某个地点页面时
     app.get('/location-page/:locationID', (req, res) => {
       const id = req.params.locationID;
